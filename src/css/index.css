@@ -1,0 +1,26 @@
+body {
+  font: 14px tahoma, arial, \5b8b\4f53, sans-serif;
+  color:#333;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.clearfix::after{
+  content:"";
+  display:block;
+  clear:both;
+}
+
+a{
+  color:inherit;
+  text-decoration: none;
+}
+
+ul,ol{
+  padding-left: 0;
+  margin: 0;
+}
