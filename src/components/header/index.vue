@@ -24,6 +24,7 @@ header{
   line-height: @header-height;
   background: @header-bg;
   color:@header-color;
+  border-bottom: 1px solid @border-bg;
 }
 .logout{
   float: right;

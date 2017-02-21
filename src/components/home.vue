@@ -33,6 +33,7 @@ export default {
   bottom: 0;
   left: @left-nav-width;
   right: 0;
+  padding:10px 20px;
   background: @main-bg;
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 class="title">新的文章</h4>
+    <h3 class="title">新的文章</h3>
     <form class="form-field">
       <div class="form-group">
       </div>
@@ -14,18 +14,18 @@ export default {
     return {
 
     }
+  },
+  methods:{
+
   }
 }
 </script>
 
 <style lang="less" scoped>
 .title{
-  line-height: 40px;
-  padding-left: 2em;
-  margin: 0;
-  background: #fff;
+  margin: 5px 0;
 }
 .form-field{
-  padding:20px;
+  margin:20px;
 }
 </style>

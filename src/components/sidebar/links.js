@@ -1,6 +1,6 @@
 export default [{
   name:'文章管理',
-  open:false,
+  open:true,
   children:[{
     name:'文章列表',
     path:{name:'articleList'}

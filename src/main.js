@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import router from './router'
 
-import 'normalize.css'
-import 'css/index.css'
+import 'css/reset.css'
+import 'css/index.less'
 
 
 new Vue({

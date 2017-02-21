@@ -40,7 +40,7 @@ import links from './links.js'
 @import '~css/varible';
 .nav-list{
   font-size: 16px;
-  color:#eee;
+  color:@left-nav-color;
 }
 .fa-angle-down{
   position: absolute;
