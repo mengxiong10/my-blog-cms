@@ -4,11 +4,11 @@
   <ul class="nav-list">
     <li v-for="link in links">
       <template v-if="link.children">
-        <a class="first-nav" @click="link.open = !link.open">
+        <div class="first-nav" @click="link.open = !link.open">
           <i class="fa fa-file-text"></i>
           <span>{{link.name}}</span>
           <i class="fa fa-angle-down fa-lg" :class="{'fa-rotate-180':link.open}"></i>
-        </a>
+        </div>
         <ul v-show = "link.open">
           <li v-for="item in link.children">
             <router-link class="second-nav" :to="item.path">{{item.name}}</router-link>
@@ -55,8 +55,8 @@ import links from './links.js'
 .first-nav,.second-nav{
   position: relative;
   display: block;
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
 }
 .first-nav{
   padding-left: 1.5em;

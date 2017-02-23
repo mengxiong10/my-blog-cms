@@ -35,6 +35,7 @@ export default {
   right: 0;
   padding:10px 20px;
   background: @main-bg;
+  overflow-y:auto;
 }
 
 </style>
