@@ -1,10 +1,8 @@
 <template>
-  <header>
-    <div class="logout">
-      <i class="fa fa-power-off"></i>
-      <span>退出登录</span>
-    </div>
-  </header>
+  <div class="logout">
+    <i class="fa fa-power-off"></i>
+    <span>退出登录</span>
+  </div>
 </template>
 
 <script>
@@ -18,14 +16,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '~css/varible.less';
-header{
-  height: @header-height;
-  line-height: @header-height;
-  background: @header-bg;
-  color:@header-color;
-  border-bottom: 1px solid @border-bg;
-}
 .logout{
   float: right;
   margin-right: 30px;

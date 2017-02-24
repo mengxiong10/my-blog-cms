@@ -1,10 +1,8 @@
 <template>
-<div>
-  <header></header>
   <ul class="nav-list">
     <li v-for="link in links">
       <template v-if="link.children">
-        <div class="first-nav" @click="link.open = !link.open">
+        <div class="first-nav" :class="{'active':link.open}" @click="link.open = !link.open">
           <i class="fa fa-file-text"></i>
           <span>{{link.name}}</span>
           <i class="fa fa-angle-down fa-lg" :class="{'fa-rotate-180':link.open}"></i>
@@ -18,29 +16,27 @@
       <router-link v-else class="first-nav" :to="link.path">{{link.name}}</router-link>
     </li>
   </ul>
-</div>
 </template>
 
 <script>
-import links from './links.js'
-  export default{
-    name:'nav',
-    data () {
-      return {
-        links,
-      }
-    },
-    methods:{
-
+import links from './nav.js'
+export default{
+  name:'nav',
+  data () {
+    return {
+      links,
     }
+  },
+  methods:{
+
   }
+}
 </script>
 
 <style lang="less" scoped>
 @import '~css/varible';
 .nav-list{
   font-size: 16px;
-  color:@left-nav-color;
 }
 .fa-angle-down{
   position: absolute;
@@ -62,6 +58,10 @@ import links from './links.js'
   padding-left: 1.5em;
   font-weight: bold;
   cursor: pointer;
+}
+.active{
+  background: linear-gradient(#334556,#2C4257),#2A3F54;
+  box-shadow: 0 1px rgba(0,0,0,.2), inset 0 1px rgba(255,255,255,.2);
 }
 .second-nav{
   padding-left:3.5em;

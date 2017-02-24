@@ -13,7 +13,7 @@ export default new Router({
       component: Home,
       children:[
         {path:'article/list',name:'articleList',component:Article},
-        {path:'article/add',name:'articleAdd',component:require('components/article/add.vue')}
+        {path:'article/add',name:'articleAdd',component:require('components/article/article-add.vue')}
       ]
     }
   ]
