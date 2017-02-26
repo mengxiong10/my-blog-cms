@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="article-add">
     <h3 class="title">新的文章</h3>
     <form class="form-field">
       <label>添加标题 * </label>
@@ -19,6 +19,7 @@
 <script>
 import SimpleMde from './simple-mde.vue'
 import TagInput from 'modules/tag-input.vue'
+
 export default {
   name:'articleAdd',
   components:{SimpleMde,TagInput},
@@ -36,6 +37,9 @@ export default {
 
 <style lang="less" scoped>
 @import '~css/varible.less';
+.article-add{
+  padding:10px 20px;
+}
 .title{
   margin-top: .5em;
   margin-bottom: 1em;
@@ -44,7 +48,7 @@ export default {
   label{
     display: inline-block;
     margin: 5px 0;
-    font-weight: bold;
+    font-weight: 700;
     &::after{
       content: ":";
     }

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="left-section">
+    <div class="sidebar-section">
       <sidebar-header></sidebar-header>
       <sidebar-nav></sidebar-nav>
     </div>
     <div class="header-section">
       <header-view></header-view>
     </div>
-    <div class="content">
+    <div class="content-section">
       <router-view></router-view>
     </div>
   </div>
@@ -25,7 +25,7 @@ export default {
 
 <style lang="less" scoped>
 @import '~css/varible.less';
-.left-section{
+.sidebar-section{
   position: absolute;
   top:0;
   bottom: 0;
@@ -41,13 +41,12 @@ export default {
   color:@header-color;
   border-bottom: 1px solid @border-bg;
 }
-.content{
+.content-section{
   position: absolute;
   top:@header-height;
   bottom: 0;
   left: @left-nav-width;
   right: 0;
-  padding:10px 20px;
   background: @main-bg;
   overflow-y:auto;
 }
