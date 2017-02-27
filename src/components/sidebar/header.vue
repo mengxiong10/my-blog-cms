@@ -19,7 +19,6 @@ export default {
 
 <style lang="less" scoped>
 h1{
-  font-size: 24px;
   margin-left: 10px;
   margin-bottom: 10px;
 }

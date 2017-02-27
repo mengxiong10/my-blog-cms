@@ -1,11 +1,11 @@
 <template>
   <div class="dropdown">
     <span>
-      排序
+      <slot></slot>
       <i class="fa fa-angle-down fa-lg"></i>
     </span>
-    <ul class="dropdown-menu">
-      <li v-for="option in opts" @click="selectValue(option)">
+    <ul class="dropdown-menu" v-for="opt in opts">
+      <li v-for="option in opt" @click="selectValue(option)">
         <i class="fa fa-check" v-show="value === (option.value || option.name)"></i>
         {{option.name}}
       </li>
@@ -16,20 +16,26 @@
 <script>
 export default {
   props:{
-    value:[String,Number],
-    options:Array
-  }
+    value:[String,Number,Array],
+    options:{
+      type:Array,
+      default:function () {
+        return []
+      }
+    }
+  },
   computed:{
     opts () {
-      return this.options.map(v => {
-        if (typeof v !== 'object' || v === null) {
-          return {
-            name:v
-          }
+      var arr = [],options = []
+      this.options.forEach(v => {
+        if (Array.isArray(v)) {
+          options.push(v)
         }else{
-          return v
+          arr.push(v)
         }
       })
+      options.push(arr)
+      return options
     }
   },
   methods:{

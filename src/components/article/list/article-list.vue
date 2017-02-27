@@ -35,9 +35,6 @@ export default {
   &:hover{
     background: @gray;
   }
-  h4{
-    font-size: 16px;
-  }
   span{
     line-height: 2;
   }

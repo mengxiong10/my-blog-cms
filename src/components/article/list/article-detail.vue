@@ -1,4 +1,3 @@
-
 <template>
   <article>
     <h4>{{article.title}}</h4>

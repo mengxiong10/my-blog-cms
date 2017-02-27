@@ -6,3 +6,12 @@
   left:@left;
   right:@right;
 }
+
+.reset-heading(@n,@i:1) when(@i <= @n) {
+  h@{i} {
+    font-size: 14px + (6 - @i)*2;
+  }
+  .reset-heading(@n,(@i + 1))
+}
+
+
