@@ -1,10 +1,11 @@
-var Mock = require('mockjs')
 
-Mock.mock('\/article\/list',{
+import Mock from 'mockjs'
+
+Mock.mock(/\/article\/list/,{
   "data|10":[{
     "id":"@id",
     "title":"@ctitle",
-    "created_at":"@datatime",
+    "created_at":"@datetime",
     "comment_count|1-200":1,
     "visit_count|1-200":1,
     "tags|1-2":["@cword(2)"]
@@ -12,14 +13,16 @@ Mock.mock('\/article\/list',{
   "total|10-100":10
 })
 
-Mock.mock('\/article\/\d+',{
+Mock.mock(/\/article\/detail/,{
   "data":{
     "id":"@id",
     "title":"@ctitle",
-    "content":"@@cparagraph",
-    "created_at":"@datatime",
+    "content":"@cparagraph(250)",
+    "created_at":"@datetime",
     "comment_count|1-200":1,
     "visit_count|1-200":1,
-    "tags|1-2":["@cword(2)"]
+    "tags|1-2":["@word(2)"]
   }
 })
+
+

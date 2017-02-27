@@ -11,8 +11,8 @@ export default new Router({
       path: '/',
       component: Home,
       children:[
-        {path:'article/list',name:'articleList',component:require('components/article/article-list.vue')},
-        {path:'article/add',name:'articleAdd',component:require('components/article/article-add.vue')}
+        {path:'article/list',name:'articleList',component:require('components/article/list')},
+        {path:'article/add',name:'articleAdd',component:require('components/article/add')}
       ]
     }
   ]
