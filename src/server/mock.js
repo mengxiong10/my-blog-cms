@@ -25,4 +25,10 @@ Mock.mock(/\/article\/detail/,{
   }
 })
 
+Mock.mock(/\/tag\/list/,{
+  "data|6":[{
+    "id":"@id",
+    "name":"@cword(2)"
+  }]
+})
 

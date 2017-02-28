@@ -18,5 +18,8 @@ export default {
   },
   getArticleDetail (id) {
     return axios.get('/article/detail',{params:{id}})
+  },
+  getTagList () {
+    return axios.get('/tag/list')
   }
 }

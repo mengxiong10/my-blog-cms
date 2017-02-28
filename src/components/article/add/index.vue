@@ -5,7 +5,7 @@
       <label>添加标题 * </label>
       <input type="text" class="form-text">
       <label>标签</label>
-      <tag-input :value="tags"></tag-input>
+      <v-tag-input :value="tags"></v-tag-input>
       <label>正文 * </label>
       <div class="editor">
         <simple-mde v-model="content"></simple-mde>
@@ -18,11 +18,10 @@
 
 <script>
 import SimpleMde from './simple-mde.vue'
-import TagInput from 'modules/tag-input.vue'
 
 export default {
   name:'articleAdd',
-  components:{SimpleMde,TagInput},
+  components:{SimpleMde},
   data () {
     return {
       content:'',
