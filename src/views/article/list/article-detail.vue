@@ -19,6 +19,7 @@ export default {
 @import '~css/varible.less';
 h4{
   text-align: center;
+  margin-top:20px;
 }
 .content{
   max-width: 800px;

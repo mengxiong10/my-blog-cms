@@ -32,14 +32,16 @@ export default {
 
 <style lang="less" scoped>
 .menu{
+  min-width: 100px;
+  max-width: 200px;
+  max-height: 300px;
   padding:5px 0;
+  overflow-y: auto;
   box-shadow: 0 1px 1px rgba(0,0,0,.1);
 }
 .dropmenu-list{
   display: block;
   cursor: pointer;
-  min-width: 100px;
-  max-width: 200px;
   padding: 3px 30px;
   line-height: 20/14;
   color: #333;

@@ -16,20 +16,18 @@
 import {mapState,mapActions} from 'vuex'
 import api from 'src/api'
 
-const setComputed = function (keys,get,set) {
+const setComputed = function (keys) {
   const res = {}
-  console.log(keys)
   keys.forEach(key => {
     res[key] = {
       get () {
-        return get[key]
+        return this.$store.state.article.params[key]
       },
       set (val) {
-        set({key:val})
+        this.selectParam({[key]:val})
       }
     }
   })
-  console.log(res)
   return res
 }
 
@@ -48,35 +46,10 @@ export default {
       tagOptions:[{name:'全部',value:''}]
     }
   },
-  computed:{
-    // ...setComputed(['order','sort','tag'],this.$store.state.article.params,this.selectParam)
-    order:{
-      get () {
-        return this.$store.state.article.params.order
-      },
-      set (val) {
-        this.selectParam({order:val})
-      }
-    },
-    sort:{
-      get () {
-        return this.$store.state.article.params.sort
-      },
-      set (val) {
-        this.selectParam({sort:val})
-      }
-    },
-    tag:{
-      get () {
-        return this.$store.state.article.params.tag
-      },
-      set (val) {
-        this.selectParam({tag:val})
-      }
-    },
-  },
+  computed:setComputed(['order','sort','tag']),
   methods:mapActions(['selectParam']),
   created () {
+    //getTagList
     api.getTagList().then(res => {
       res.data.data.forEach(v => this.tagOptions.push({name:v.name,value:v.id}))
     })

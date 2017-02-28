@@ -1,14 +1,14 @@
 <template>
   <div class="article-section-wrap clearfix">
     <div class="article-left-section">
-      <list-controller class="list-controller"></list-controller>
+      <article-list-controller class="list-controller"></article-list-controller>
       <article-list class="list" :articles="articles" :cur-index="curIndex"></article-list>
       <div class="page"></div>
     </div>
     <div class="article-right-section">
-      <div class="detail-controller"></div>
+      <article-detail-controller class="detail-controller"></article-detail-controller>
       <template v-if="articles.length">
-        <article-detail :article = "articles[curIndex]"></article-detail>
+        <article-detail class="detail" :article = "articles[curIndex]"></article-detail>
       </template>
     </div>
   </div>
@@ -17,12 +17,13 @@
 <script>
 import ArticleList from './article-list.vue'
 import ArticleDetail from './article-detail.vue'
-import ListController from './list-controller.vue'
+import ArticleListController from './article-list-controller.vue'
+import ArticleDetailController from './article-detail-controller.vue'
 import {mapState, mapActions} from 'vuex'
 
 export default {
   name:'article',
-  components:{ArticleList,ArticleDetail,ListController},
+  components:{ArticleList,ArticleDetail,ArticleListController,ArticleDetailController},
   computed:mapState({
     articles : ({article}) => article.articleList,
     curIndex : ({article}) => article.articleIndex
@@ -53,14 +54,19 @@ export default {
 }
 .article-right-section{
   flex:2;
-  overflow: auto;
+  display: flex;
+  flex-flow:column;
 }
-.list-controller,.page{
-  flex:0 0 50px;
-  line-height: 50px;
+.list-controller,.page,.detail-controller{
+  flex:none;
+  height: 50px;
+  padding:12px 0;
   border-bottom: 1px solid @border-bg;
 }
-.list{
+.detail-controller{
+  margin:0 25px;
+}
+.list,.detail{
   flex:auto;
   overflow: auto;
 }

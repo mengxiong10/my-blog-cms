@@ -45,7 +45,6 @@ export default {
       }
     },
     selectParam({commit,dispatch},param){
-      console.log(param)
       commit('setParams',param)
       dispatch('getArticleList')
     }

@@ -14,9 +14,10 @@
 </template>
 
 <script>
-import SidebarNav from 'components/sidebar/nav.vue'
-import SidebarHeader from 'components/sidebar/header.vue'
-import HeaderView from 'components/header'
+
+import SidebarNav from './sidebar/nav.vue'
+import SidebarHeader from './sidebar/header.vue'
+import HeaderView from './header'
 export default {
   components:{SidebarHeader,SidebarNav,HeaderView},
   name:'home',
