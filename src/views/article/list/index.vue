@@ -3,7 +3,7 @@
     <div class="article-left-section">
       <article-list-controller class="list-controller"></article-list-controller>
       <article-list class="list" :articles="articles" :cur-index="curIndex"></article-list>
-      <div class="page"></div>
+      <v-page class="page" :total="10" v-model="page"></v-page>
     </div>
     <div class="article-right-section">
       <article-detail-controller class="detail-controller"></article-detail-controller>
@@ -24,13 +24,21 @@ import {mapState, mapActions} from 'vuex'
 export default {
   name:'article',
   components:{ArticleList,ArticleDetail,ArticleListController,ArticleDetailController},
-  computed:mapState({
-    articles : ({article}) => article.articleList,
-    curIndex : ({article}) => article.articleIndex
-  }),
-  methods:mapActions([
-    'getArticleList'
-  ]),
+  computed:{
+    page :{
+      get () {
+        return this.$store.state.article.params.page
+      },
+      set (page) {
+        this.selectParam({page})
+      }
+    },
+    ...mapState({
+      articles : ({article}) => article.articleList,
+      curIndex : ({article}) => article.articleIndex
+    })
+  },
+  methods:mapActions(['getArticleList','selectParam']),
   created () {
     this.getArticleList()
   }
@@ -57,17 +65,20 @@ export default {
   display: flex;
   flex-flow:column;
 }
-.list-controller,.page,.detail-controller{
+.list-controller,.detail-controller{
   flex:none;
   height: 50px;
   padding:12px 0;
   border-bottom: 1px solid @border-bg;
 }
+.page{
+  padding:20px 0;
+}
 .detail-controller{
   margin:0 25px;
 }
 .list,.detail{
-  flex:auto;
+  // flex:auto;
   overflow: auto;
 }
 .sort{

@@ -11,6 +11,8 @@ import 'css/index.less'
 Vue.component('v-dropdown',require('components/v-dropdown.vue'))
 Vue.component('v-dropmenu',require('components/v-dropmenu.vue'))
 Vue.component('v-tag-input',require('components/v-tag-input.vue'))
+Vue.component('v-page',require('components/v-page.vue'))
+
 
 new Vue({
   el: '#app',
