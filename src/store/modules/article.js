@@ -6,17 +6,16 @@ export default {
   state:{
     articleList:[],
     articleIndex:0,
+    totalPage:1,
     params:{page:1,perPage:10,sort:'created_at',order:'desc',tag:''}
   },
   mutations:{
-    setArticleList (state,arr) {
-      state.articleList = arr
+    setArticleList (state,article) {
+      state.articleList = article.list
+      state.totalPage = article.total
     },
     setCurArticle(state,article) {
       state.articleIndex = article.index
-      if (article.article) {
-        state.articleList.splice(state.articleIndex,1,article.article)
-      }
     },
     setParams(state,param){
       merge(state.params,param)
@@ -25,10 +24,13 @@ export default {
   actions:{
     getArticleList ({state,commit,dispatch}){
       api.getArticleList(state.params).then(res => {
-        var data = res.data.data || []
-        commit('setArticleList',data)
+
+        var list = res.data.data || []
+        var total = Math.ceil(res.data.total / state.params.perPage)
+        console.log(res,total)
+        commit('setArticleList',{list,total})
         //默认选中第一篇文章
-        if (data.length) {
+        if (list.length) {
           dispatch('selectArticle',0)
         }
       })
@@ -37,12 +39,6 @@ export default {
       //选中当前文章
       var article = state.articleList[index]
       commit('setCurArticle',{index})
-      //缓存content
-      if (!article.content) {
-        api.getArticleDetail(article.id).then(res => {
-          commit('setCurArticle',{index,article:res.data.data})
-        })
-      }
     },
     selectParam({commit,dispatch},param){
       commit('setParams',param)

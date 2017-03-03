@@ -1,16 +1,16 @@
 <!-- 分页组件 -->
 <template>
   <div class="page-wrap" onselectstart = "return false">
-    <button @click="--value" :disabled="value === 1">
+    <button @click="--currentPage" :disabled="currentPage === 1">
       <i class="fa fa-chevron-left"></i>
     </button>
     <button
       v-for="page in pages"
-      :class="{'active': page === value}"
+      :class="{'active': page === currentPage}"
       :disabled="page =='...'"
-      @click="value = page"
+      @click="currentPage = page"
       >{{page}}</button>
-    <button @click="++value" :disabled="value === total">
+    <button @click="++currentPage" :disabled="currentPage === total">
       <i class="fa fa-chevron-right"></i>
     </button>
   </div>
@@ -29,34 +29,34 @@ export default {
       default:1
     }
   },
-  watch:{
-    total (val) {
-      if (this.value > val) {
-        this.value = val
+  computed:{
+    currentPage:{
+      get () {
+        return this.value
+      },
+      set (newVal){
+        this.$emit('input',newVal)
       }
     },
-    value (val) {
-      this.$emit('input',val)
+    pages () {
+      let current = this.currentPage
+      let last = this.total
+      if (last <= 7) {
+        return Array.apply(null,{length:last}).map((v,i)=> i + 1)
+      }else if (current - 3 <= 1) {
+        return [1, 2, 3, 4, 5, 6, '...', last]
+      }else if (current + 3 >= last){
+        return [1, '...', last - 5, last - 4, last - 3, last - 2, last - 1, last]
+      }else{
+        return [1, '...', current - 2, current - 1, current, current + 1, current + 2, '...', last]
+      }
     }
   },
-  computed:{
-    pages () {
-       let c = this.value
-       let l = this.total
-       let arr = [1,2,3,4,5,6,7,8,9,10,'...',l]
-       if (l <=10) {
-         return arr.slice(0, l)
-       }else{
-          if (c <=6) {
-            return arr;
-          }else{
-            if (c + 5 < l) {
-              return [1,'...',c-4,c-3,c-2,c-1,c,c+1,c+2,c+3,c+4,'...',l]
-            }else{
-              return [1,'...',l-8,l-7,l-6,l-5,l-4,l-3,l-2,l-1,l]
-            }
-          }
-       }
+  watch:{
+    total (val) {
+      if (this.currentPage > val) {
+        this.currentPage = val
+      }
     }
   }
 }

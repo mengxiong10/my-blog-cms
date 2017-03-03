@@ -2,14 +2,17 @@
   <div class="article-add">
     <h3 class="title">新的文章</h3>
     <form class="form-field">
-      <label>添加标题 * </label>
-      <input type="text" class="form-text">
-      <label>标签</label>
-      <v-tag-input :value="tags"></v-tag-input>
-      <label>正文 * </label>
-      <div class="editor">
-        <simple-mde v-model="content"></simple-mde>
-      </div>
+      <section class="title-section">
+        <label>添加标题 * </label>
+        <input type="text" class="form-text">
+      </section>
+      <tag-section class="tag-section" :tags="tags"></tag-section>
+      <section>
+        <label>正文 * </label>
+        <div class="editor">
+          <simple-mde v-model="content"></simple-mde>
+        </div>
+      </section>
       <button type="submit" class="btn btn-success">发表</button>
       <button type="button" class="btn btn-primary">保存为草稿</button>
     </form>
@@ -18,10 +21,12 @@
 
 <script>
 import SimpleMde from './simple-mde.vue'
+import TagSection from './tag.vue'
+import api from 'src/api'
 
 export default {
   name:'articleAdd',
-  components:{SimpleMde},
+  components:{SimpleMde,TagSection},
   data () {
     return {
       content:'',
@@ -30,7 +35,7 @@ export default {
   },
   methods:{
 
-  },
+  }
 }
 </script>
 
@@ -45,7 +50,7 @@ export default {
 }
 .form-field{
   label{
-    display: inline-block;
+    display:inline-block;
     margin: 5px 0;
     font-weight: 700;
     &::after{
@@ -56,4 +61,15 @@ export default {
 .btn-primary{
   margin-left: 10px;
 }
+.title-section{
+  display:inline-block;
+  width:70%;
+}
+.tag-section{
+  display:inline-block;
+  width:10%;
+  margin-left:25px;
+}
+
+
 </style>

@@ -3,7 +3,7 @@
     <div class="article-left-section">
       <article-list-controller class="list-controller"></article-list-controller>
       <article-list class="list" :articles="articles" :cur-index="curIndex"></article-list>
-      <v-page class="page" :total="10" v-model="page"></v-page>
+      <v-page class="page" :total="totalPage" v-model="currentPage"></v-page>
     </div>
     <div class="article-right-section">
       <article-detail-controller class="detail-controller"></article-detail-controller>
@@ -25,7 +25,7 @@ export default {
   name:'article',
   components:{ArticleList,ArticleDetail,ArticleListController,ArticleDetailController},
   computed:{
-    page :{
+    currentPage :{
       get () {
         return this.$store.state.article.params.page
       },
@@ -34,6 +34,7 @@ export default {
       }
     },
     ...mapState({
+      totalPage: ({article}) => article.totalPage,
       articles : ({article}) => article.articleList,
       curIndex : ({article}) => article.articleIndex
     })

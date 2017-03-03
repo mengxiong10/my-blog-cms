@@ -17,7 +17,7 @@ export default {
     return axios.get('/article/list',{params})
   },
   getArticleDetail (id) {
-    return axios.get('/article/detail',{params:{id}})
+    return axios.get(`/article/${id}`)
   },
   getTagList () {
     return axios.get('/tag/list')

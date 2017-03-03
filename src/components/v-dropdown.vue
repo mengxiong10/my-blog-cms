@@ -7,7 +7,7 @@
       <slot></slot>
       <i class="fa fa-angle-down fa-lg"></i>
     </span>
-    <div class="dropdown-menu" v-show="show" @click="hide">
+    <div class="dropdown-menu" v-show="show" @click="hide" :style="{[position]:0}">
       <slot name="dropdown"></slot>
     </div>
   </div>
@@ -20,6 +20,10 @@ export default {
     hideOnClick:{
       type:Boolean,
       default:false
+    },
+    position:{
+      type:String,
+      default:'right'
     }
   },
   data () {
@@ -53,11 +57,11 @@ export default {
   display: inline-block;
   outline: none;
   cursor: pointer;
+  padding:5px;
 }
 .dropdown-menu{
   position: absolute;
-  right: 0;
-  margin-top: 2px;
+  margin-top: 7px;
   font-size: 14px;
   text-align: left;
   background-color: #fff;
@@ -66,5 +70,4 @@ export default {
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
   z-index: 100;
 }
-
 </style>

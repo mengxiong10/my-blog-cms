@@ -1,7 +1,7 @@
 <template>
   <ul class="menu">
-    <li class="dropmenu-list" v-for="option in opts" @click="selectValue(option)">
-      <i class="fa fa-check" v-show="value === option.value"></i>
+    <li class="dropmenu-list" v-for="(option,index) in opts" @click="selectValue(option)">
+      <i class="fa fa-check"  v-show="isSelected(option)"></i>
       {{option.name}}
     </li>
   </ul>
@@ -9,7 +9,17 @@
 
 <script>
 export default {
-  props:['value','options'],
+  props:{
+    value:null,
+    options:Array,
+    optKey:String
+  },
+  data () {
+    return {
+      multiple:Array.isArray(this.value),
+      key:this.optKey || 'value'
+    }
+  },
   computed:{
     opts () {
       return this.options.map(v => {
@@ -22,8 +32,24 @@ export default {
     }
   },
   methods:{
+    isSelected (option) {
+      if (this.multiple) {
+        return this.value.indexOf(option[this.key]) > -1
+      } else {
+        return this.value === option[this.key]
+      }
+    },
     selectValue (option) {
-      this.$emit('input',option.value)
+      if(this.multiple){
+        var index = this.value.indexOf(option[this.key])
+        if(index >= 0) {
+          this.value.splice(index,1)
+        }else {
+          this.value.push(option[this.key])
+        }
+      }else{
+        this.$emit('input',option[this.key])
+      }
     }
   }
 }
