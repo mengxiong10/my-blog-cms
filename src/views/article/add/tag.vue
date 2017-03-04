@@ -1,37 +1,50 @@
 <template>
   <section>
-    <label>标签</label>
-    <div>
-      <v-dropdown class="tag-wrap" position="left">
-        <span>选择标签</span>
-        <v-dropmenu slot="dropdown" :options="tagOptions" opt-key="id" v-model="tags"></v-dropmenu>
-        <v-dropmenu slot="dropdown" :options="['添加标签']" @input="showDialog = true"></v-dropmenu>
-      </v-dropdown>
-    </div>
+    <v-dropdown class="tag-wrap" position="left">
+      <i class="fa fa-tags"> 标签</i>
+      <v-dropmenu slot="dropdown" :options="tagOptions" option-key="_id" v-model="tags"></v-dropmenu>
+      <v-dropmenu slot="dropdown" :options="['添加标签']" @input="showDialog = true"></v-dropmenu>
+    </v-dropdown>
     <v-dialog v-model="showDialog" title="添加标签">
-      <form @submit.prevent="save()">
-        <input type="text" placeholder="创建新标签">
-      </form>
-      <button slot="footer" class="btn btn-primary">创建</button>
+      <input class="form-text" type="text" placeholder="创建新标签" v-model="tag">
+      <button  class="btn btn-primary" slot="footer" @click="saveTag">创建</button>
     </v-dialog>
   </section>
 </template>
 
 <script>
-import api from 'src/api'
+import {mapState, mapActions} from 'vuex'
 export default {
-  name:'tagSecond',
+  name:'tagSection',
   props:{
     tags:Array
   },
   data () {
     return {
       showDialog:false,
-      tagOptions:[]
+      tag:'',
     }
   },
+  computed:mapState({
+    tagOptions : ({tag}) => tag.tagList
+  }),
+  watch:{
+    showDialog (val) {
+      if (val) {
+        this.tag = ''
+      }
+    }
+  },
+  methods:{
+    saveTag () {
+      this.addTag().then(()=>{
+        this.showDialog = false
+      })
+    },
+    ...mapActions(['getTagList','addTag'])
+  },
   created () {
-    api.getTagList().then(res => this.tagOptions = res.data.data)
+    this.getTagList()
   }
 }
 </script>

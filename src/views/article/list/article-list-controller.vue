@@ -7,7 +7,7 @@
     </v-dropdown>
     <v-dropdown class="controller" :hide-on-click="true">
       <span>筛选</span>
-      <v-dropmenu slot="dropdown" :options="tagOptions" v-model="tag"></v-dropmenu>
+      <v-dropmenu slot="dropdown" :options="tagOptions" option-key="_id" v-model="tag"></v-dropmenu>
     </v-dropdown>
   </div>
 </template>
@@ -32,6 +32,9 @@ const setComputed = function (keys) {
 }
 
 export default {
+  props:{
+    tagOptions:Array
+  },
   data () {
     return {
       orderOptions:[
@@ -42,19 +45,11 @@ export default {
         {name:'创建时间',value:'created_at'},
         {name:'更新时间',value:'updated_at'},
         {name:'标题',value:'title'}
-      ],
-      tagOptions:[{name:'全部',value:''}]
+      ]
     }
   },
   computed:setComputed(['order','sort','tag']),
   methods:mapActions(['selectParam']),
-  created () {
-    //getTagList
-    api.getTagList().then(res => {
-      res.data.data.forEach(v => this.tagOptions.push({name:v.name,value:v.id}))
-    })
-  }
-
 }
 </script>
 

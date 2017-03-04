@@ -58,7 +58,7 @@
   overflow-y: auto;
 }
 .dialog-footer{
-  padding:10px 20px;
+  padding:20px;
   text-align: right;
 }
 .dialog{

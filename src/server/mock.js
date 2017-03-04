@@ -3,7 +3,7 @@ import Mock from 'mockjs'
 
 Mock.mock(/\/article\/list/,{
   "data|10":[{
-    "id":"@id",
+    "_id":"@id",
     "title":"@ctitle",
     "content":"@cparagraph(250)",
     "created_at":"@datetime",
@@ -16,7 +16,7 @@ Mock.mock(/\/article\/list/,{
 
 Mock.mock(/\/tag\/list/,{
   "data|6":[{
-    "id":"@id",
+    "_id":"@id",
     "name":"@cword(2)"
   }]
 })

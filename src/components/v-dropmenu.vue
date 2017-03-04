@@ -1,9 +1,12 @@
 <template>
   <ul class="menu">
-    <li class="dropmenu-list" v-for="(option,index) in opts" @click="selectValue(option)">
-      <i class="fa fa-check"  v-show="isSelected(option)"></i>
-      {{option.name}}
-    </li>
+    <template v-if="opts.length">
+      <li class="dropmenu-list"  v-for="(option,index) in opts" @click="selectValue(option)">
+        <i class="fa fa-check"  v-show="isSelected(option)"></i>
+        {{option.name}}
+      </li>
+    </template>
+    <li class="dropmenu-list disabled" v-else>空</li>
   </ul>
 </template>
 
@@ -12,12 +15,12 @@ export default {
   props:{
     value:null,
     options:Array,
-    optKey:String
+    optionKey:String
   },
   data () {
     return {
       multiple:Array.isArray(this.value),
-      key:this.optKey || 'value'
+      key:this.optionKey || 'value'
     }
   },
   computed:{
@@ -57,6 +60,7 @@ export default {
 
 
 <style lang="less" scoped>
+@import '~css/varible.less';
 .menu{
   min-width: 100px;
   max-width: 200px;
@@ -75,11 +79,16 @@ export default {
   &:hover{
     background: #f5f5f5;
   }
+  &.disabled{
+    color: @disabled-color;
+    background: transparent;
+    cursor: not-allowed;
+  }
 }
 .fa-check{
   position: absolute;
   margin-left: -20px;
-  color:#337AB7;
+  color:@blue;
   line-height: inherit;
 }
 </style>
