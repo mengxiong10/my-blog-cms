@@ -6,7 +6,8 @@
       <v-dropmenu slot="dropdown" :options="orderOptions" v-model="order"></v-dropmenu>
     </v-dropdown>
     <v-dropdown class="controller" :hide-on-click="true">
-      <span>筛选</span>
+      <span>标签</span>
+      <v-dropmenu slot="dropdown" :options="[{name:'全部',_id:''}]" option-key="_id" v-model="tag"></v-dropmenu>
       <v-dropmenu slot="dropdown" :options="tagOptions" option-key="_id" v-model="tag"></v-dropmenu>
     </v-dropdown>
   </div>

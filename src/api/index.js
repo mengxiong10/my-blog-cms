@@ -21,6 +21,10 @@ export default {
   getArticleDetail (id) {
     return axios.get(`/article/${id}`)
   },
+  addArticle (article) {
+    console.log(article,typeof article)
+    return axios.post('/article',article)
+  },
   getTagList () {
     return axios.get('/tag/list')
   },

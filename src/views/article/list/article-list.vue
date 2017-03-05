@@ -5,16 +5,17 @@
         :class="{'active':curIndex === index}"
         @click="selectArticle(index)">
       <h4 class="text-overflow">{{article.title}}</h4>
-      <span>{{article.created_at}}</span>
-      <span>{{article.comment_count}}</span>
-      <span>{{article.visit_count}}</span>
-      <span>{{article.tags.join()}}</span>
+      <span>{{article.created_at | date}}</span>
+      <span title="访问量">{{article.visit_count}}</span>
+      <span>{{article.status ? '已发布' : '草稿'}}</span>
+      <span>{{article.tags.map(v => v.name).join()}}</span>
     </li>
   </ul>
 </template>
 
 <script>
 import {mapActions} from 'vuex'
+import Vue from 'vue'
 export default {
   name:'articleList',
   props:{
@@ -37,15 +38,11 @@ export default {
   }
   span{
     line-height: 2;
-  }
-  span:nth-of-type(2){
-    margin-left: 30px;
-    &::after{
-      content:' /'
-    }
+    margin-right: 30px;
   }
   span:last-of-type{
     float: right;
+    margin-right: 0;
   }
 }
 .active{

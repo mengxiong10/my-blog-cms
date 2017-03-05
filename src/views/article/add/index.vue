@@ -3,18 +3,18 @@
     <h3 class="title">新的文章</h3>
     <form class="form-field">
       <section class="title-section">
-        <label>添加标题 * </label>
-        <input type="text" class="form-text">
+        <label>标题 * </label>
+        <input type="text" class="form-text" v-model="article.title">
       </section>
-      <tag-section class="tag-section" :tags="tags"></tag-section>
+      <tag-section class="tag-section" :tags="article.tags"></tag-section>
       <section>
         <label>正文 * </label>
         <div class="editor">
-          <simple-mde v-model="content"></simple-mde>
+          <simple-mde v-model="article.content"></simple-mde>
         </div>
       </section>
-      <button type="submit" class="btn btn-success">发表</button>
-      <button type="button" class="btn btn-primary">保存为草稿</button>
+      <button type="button" class="btn btn-success" @click="saveArticle">发表</button>
+      <button type="button" class="btn btn-primary" @click="saveArticle">保存为草稿</button>
     </form>
   </div>
 </template>
@@ -29,12 +29,22 @@ export default {
   components:{SimpleMde,TagSection},
   data () {
     return {
-      content:'',
-      tags:[]
+      article:{
+        title:'',
+        content:'',
+        tags:[],
+        status:0
+      }
     }
   },
   methods:{
-
+    saveArticle () {
+      this.article.status = 1
+      api.addArticle(this.article).then(res => {
+        window.alert('保存成功')
+        console.log(res)
+      })
+    },
   }
 }
 </script>

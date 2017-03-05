@@ -81,8 +81,10 @@ export default {
   margin:0 25px;
 }
 .list,.detail{
-  // flex:auto;
   overflow: auto;
+}
+.list{
+  height: 680px;
 }
 .sort{
   float: right;

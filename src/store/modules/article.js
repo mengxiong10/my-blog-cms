@@ -26,7 +26,6 @@ export default {
       return api.getArticleList(state.params).then(res => {
         var list = res.data.data || []
         var total = Math.ceil(res.data.total / state.params.perPage)
-        console.log(res,total)
         commit('SET_ARTICLE_LIST',{list,total})
         //默认选中第一篇文章
         if (list.length) {
