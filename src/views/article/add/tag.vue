@@ -9,7 +9,7 @@
       <form id="tag-form" @submit.prevent="saveTag">
         <input class="form-text" type="text" placeholder="创建新标签" v-model="tag" required>
       </form>
-      <button form="tag-form" class="btn btn-primary" slot="footer">创建</button>
+      <button class="btn btn-primary" form="tag-form" slot="footer">创建</button>
     </v-dialog>
   </section>
 </template>
