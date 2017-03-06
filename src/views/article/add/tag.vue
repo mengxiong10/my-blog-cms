@@ -6,8 +6,10 @@
       <v-dropmenu slot="dropdown" :options="['添加标签']" @input="showDialog = true"></v-dropmenu>
     </v-dropdown>
     <v-dialog v-model="showDialog" title="添加标签">
-      <input class="form-text" type="text" placeholder="创建新标签" v-model="tag">
-      <button  class="btn btn-primary" slot="footer" @click="saveTag">创建</button>
+      <form id="tag-form" @submit.prevent="saveTag">
+        <input class="form-text" type="text" placeholder="创建新标签" v-model="tag" required>
+      </form>
+      <button form="tag-form" class="btn btn-primary" slot="footer">创建</button>
     </v-dialog>
   </section>
 </template>

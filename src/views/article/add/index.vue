@@ -1,10 +1,10 @@
 <template>
   <div class="article-add">
     <h3 class="title">新的文章</h3>
-    <form class="form-field">
+    <form class="form-field" @submit.prevent="saveArticle">
       <section class="title-section">
         <label>标题 * </label>
-        <input type="text" class="form-text" v-model="article.title">
+        <input type="text" class="form-text" v-model="article.title" required>
       </section>
       <tag-section class="tag-section" :tags="article.tags"></tag-section>
       <section>
@@ -13,8 +13,8 @@
           <simple-mde v-model="article.content"></simple-mde>
         </div>
       </section>
-      <button type="button" class="btn btn-success" @click="saveArticle">发表</button>
-      <button type="button" class="btn btn-primary" @click="saveArticle">保存为草稿</button>
+      <button type="submit" class="btn btn-success" @mousedown="changeStatus(1)">发表</button>
+      <button type="submit" class="btn btn-primary" @mousedown="changeStatus(0)">保存为草稿</button>
     </form>
   </div>
 </template>
@@ -38,11 +38,12 @@ export default {
     }
   },
   methods:{
-    saveArticle () {
-      this.article.status = 1
+    changeStatus (status) {
+      this.article.status = status
+    },
+    saveArticle (e) {
       api.addArticle(this.article).then(res => {
         window.alert('保存成功')
-        console.log(res)
       })
     },
   }
