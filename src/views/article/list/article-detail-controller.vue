@@ -8,6 +8,7 @@
 
 <script>
 import api from 'src/api'
+import {mapActions} from 'vuex'
 export default {
   name:'articleDetailController',
   props:{
@@ -19,10 +20,11 @@ export default {
     }
   },
   methods:{
+    ...mapActions(['delCurrentArticle','updateArticleStatus']),
     del () {
       if (window.confirm('确认删除吗')) {
         api.delArticle(this.article._id).then(res => {
-          this.$emit('del')
+          this.delCurrentArticle()
         })
       }
     },
@@ -31,7 +33,7 @@ export default {
     },
     updateStatus () {
       api.updateArticleStatus(this.article._id,this.article.status ^ 1).then(res => {
-        this.article.status = res.data.status
+        this.updateArticleStatus(res.data.status)
       })
     }
   }
