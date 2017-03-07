@@ -22,8 +22,13 @@ export default {
     return axios.get(`/article/${id}`)
   },
   addArticle (article) {
-    console.log(article,typeof article)
     return axios.post('/article',article)
+  },
+  delArticle (id) {
+    return axios.delete(`/article/${id}`)
+  },
+  updateArticleStatus (id, status){
+    return axios.put(`/article/${id}/status/${status}`)
   },
   getTagList () {
     return axios.get('/tag/list')

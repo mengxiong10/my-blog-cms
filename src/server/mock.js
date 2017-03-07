@@ -9,6 +9,7 @@ Mock.mock(/\/article\/list/,{
     "created_at":"@datetime",
     "comment_count|1-200":1,
     "visit_count|1-200":1,
+    "status|1":[0,1],
     "tags|1-2":["@word(2)"]
   }],
   "total":200

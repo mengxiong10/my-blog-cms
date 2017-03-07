@@ -39,7 +39,7 @@ export default {
   },
   methods:{
     saveTag () {
-      this.addTag().then(()=>{
+      this.addTag(this.tag).then(()=>{
         this.showDialog = false
       })
     },

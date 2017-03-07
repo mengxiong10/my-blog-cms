@@ -2,8 +2,8 @@
   <ul>
     <li class="list-group-item"
         v-for="(article,index) in articles"
-        :class="{'active':curIndex === index}"
-        @click="selectArticle(index)">
+        :class="{'active':currentArticle._id === article._id}"
+        @click="selectArticle(article)">
       <h4 class="text-overflow">{{article.title}}</h4>
       <span>{{article.created_at | date}}</span>
       <span title="访问量">{{article.visit_count}}</span>
@@ -20,7 +20,7 @@ export default {
   name:'articleList',
   props:{
     articles:Array,
-    curIndex:Number
+    currentArticle:Object
   },
   methods:mapActions(['selectArticle'])
 }

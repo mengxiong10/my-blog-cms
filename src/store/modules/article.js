@@ -5,7 +5,7 @@ import {merge} from 'src/server/utils'
 export default {
   state:{
     articleList:[],
-    articleIndex:0,
+    currentArticle:null,
     totalPage:0,
     params:{page:1,perPage:10,sort:'created_at',order:'desc',tag:''}
   },
@@ -15,7 +15,7 @@ export default {
       state.totalPage = article.total
     },
     SET_CURRENT_ARTICLE(state,article) {
-      state.articleIndex = article.index
+      state.currentArticle = article
     },
     SET_PARAMS(state,param){
       merge(state.params,param)
@@ -28,15 +28,14 @@ export default {
         var total = Math.ceil(res.data.total / state.params.perPage)
         commit('SET_ARTICLE_LIST',{list,total})
         //默认选中第一篇文章
-        if (list.length) {
-          dispatch('selectArticle',0)
+        if (list.length && state.currentArticle === null) {
+          dispatch('selectArticle',list[0])
         }
       })
     },
-    selectArticle ({state,commit},index) {
+    selectArticle ({state,commit},article) {
       //选中当前文章
-      var article = state.articleList[index]
-      commit('SET_CURRENT_ARTICLE',{index})
+      commit('SET_CURRENT_ARTICLE',article)
     },
     selectParam({commit,dispatch},param){
       commit('SET_PARAMS',param)

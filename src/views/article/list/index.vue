@@ -1,14 +1,14 @@
 <template>
   <div class="article-section-wrap clearfix">
     <div class="article-left-section">
-      <article-list-controller class="list-controller" :tag-options="tagList"></article-list-controller>
-      <article-list class="list" :articles="articles" :cur-index="curIndex"></article-list>
+      <article-list-controller class="list-controller" :tag-options="tagList" @del="getArticleList"></article-list-controller>
+      <article-list class="list" :articles="articles" :current-article="currentArticle"></article-list>
       <v-page v-if="totalPage > 0" class="page" :total="totalPage" v-model="currentPage"></v-page>
     </div>
     <div class="article-right-section">
-      <article-detail-controller class="detail-controller"></article-detail-controller>
-      <template v-if="articles.length">
-        <article-detail class="detail" :article = "articles[curIndex]"></article-detail>
+      <template v-if="currentArticle">
+        <article-detail-controller class="detail-controller" :article = "currentArticle"></article-detail-controller>
+        <article-detail class="detail" :article = "currentArticle"></article-detail>
       </template>
     </div>
   </div>
@@ -34,10 +34,10 @@ export default {
       }
     },
     ...mapState({
-      totalPage: ({article}) => article.totalPage,
-      articles : ({article}) => article.articleList,
-      curIndex : ({article}) => article.articleIndex,
-      tagList  : ({tag}) => tag.tagList
+      totalPage     : ({article}) => article.totalPage,
+      articles      : ({article}) => article.articleList,
+      currentArticle: ({article}) => article.currentArticle,
+      tagList       : ({tag})     => tag.tagList
     })
   },
   methods:mapActions(['getArticleList','selectParam','getTagList']),

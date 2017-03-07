@@ -1,6 +1,6 @@
 <template>
   <div class="article-add">
-    <h3 class="title">新的文章</h3>
+    <h3 class="title">{{$route.name === 'articleAdd' ? '新的文章' : '修改文章'}}</h3>
     <form class="form-field" @submit.prevent="saveArticle">
       <section class="title-section">
         <label>标题 * </label>
@@ -13,8 +13,11 @@
           <simple-mde v-model="article.content"></simple-mde>
         </div>
       </section>
-      <button type="submit" class="btn btn-success" @mousedown="changeStatus(1)">发表</button>
-      <button type="submit" class="btn btn-primary" @mousedown="changeStatus(0)">保存为草稿</button>
+      <template v-if="$route.name === 'articleAdd'">
+        <button type="submit" class="btn btn-success" @mousedown="changeStatus(1)">发表</button>
+        <button type="submit" class="btn btn-primary" @mousedown="changeStatus(0)">保存为草稿</button>
+      </template>
+      <button v-else type="submit" class="btn btn-primary">保存</button>
     </form>
   </div>
 </template>
@@ -23,21 +26,36 @@
 import SimpleMde from './simple-mde.vue'
 import TagSection from './tag.vue'
 import api from 'src/api'
+import {mapState, mapActions} from 'vuex'
+
+function Article() {
+  this.title = ''
+  this.content = ''
+  this.tags = []
+  this.status = 0
+}
 
 export default {
   name:'articleAdd',
   components:{SimpleMde,TagSection},
   data () {
     return {
-      article:{
-        title:'',
-        content:'',
-        tags:[],
-        status:0
-      }
+      article:{}
     }
   },
+  watch:{
+    '$route':'getArticle'
+  },
   methods:{
+    getArticle (){
+      if (this.$route.name === 'articleEdit' ) {
+        api.getArticleDetail(this.$route.params.id).then(res => {
+          this.article = res.data.data
+        })
+      }else{
+        this.article = new Article()
+      }
+    },
     changeStatus (status) {
       this.article.status = status
     },
@@ -46,6 +64,9 @@ export default {
         window.alert('保存成功')
       })
     },
+  },
+  created () {
+    this.getArticle()
   }
 }
 </script>
@@ -81,6 +102,4 @@ export default {
   width:10%;
   margin-left:25px;
 }
-
-
 </style>

@@ -12,6 +12,14 @@ export default {
       mde:null
     }
   },
+  watch:{
+    value (newVal) {
+      if (newVal === this.mde.value()) {
+        return 
+      }
+      this.mde.value(newVal)
+    }
+  },
   mounted () {
     this.mde = new Simplemde({
       autoDownloadFontAwesome:false,
