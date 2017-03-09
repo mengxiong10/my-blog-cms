@@ -1,6 +1,6 @@
 <template>
   <div class="article-add">
-    <h3 class="title">{{$route.name === 'articleAdd' ? '新的文章' : '修改文章'}}</h3>
+    <h3 class="title">{{isArticleAdd ? '新的文章' : '修改文章'}}</h3>
     <form class="form-field" @submit.prevent="saveArticle">
       <section class="title-section">
         <label>标题 * </label>
@@ -13,7 +13,7 @@
           <simple-mde v-model="article.content"></simple-mde>
         </div>
       </section>
-      <template v-if="$route.name === 'articleAdd'">
+      <template v-if="isArticleAdd">
         <button type="submit" class="btn btn-success" @mousedown="changeStatus(1)">发表</button>
         <button type="submit" class="btn btn-primary" @mousedown="changeStatus(0)">保存为草稿</button>
       </template>
@@ -24,7 +24,7 @@
 
 <script>
 import SimpleMde from './simple-mde.vue'
-import TagSection from './tag.vue'
+import TagSection from './tag-section.vue'
 import api from 'src/api'
 import {mapState, mapActions} from 'vuex'
 
@@ -43,25 +43,32 @@ export default {
       article:{}
     }
   },
+  computed:{
+    isArticleAdd () {
+      return this.$route.name === 'articleAdd'
+    }
+  },
   watch:{
     '$route':'getArticle'
   },
   methods:{
     getArticle (){
-      if (this.$route.name === 'articleEdit' ) {
+      if (this.isArticleAdd) {
+        this.article = new Article()
+      }else{
         api.getArticleDetail(this.$route.params.id).then(res => {
           this.article = res.data.data
         })
-      }else{
-        this.article = new Article()
       }
     },
     changeStatus (status) {
       this.article.status = status
     },
     saveArticle (e) {
-      api.addArticle(this.article).then(res => {
+      var method = this.isArticleAdd ? api.addArticle : api.updateArticle
+      method(this.article).then(res => {
         window.alert('保存成功')
+        this.$router.push({name:'articleList'})
       })
     },
   },

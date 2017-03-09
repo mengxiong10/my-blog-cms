@@ -24,6 +24,9 @@ export default {
   addArticle (article) {
     return axios.post('/article',article)
   },
+  updateArticle (article){
+    return axios.put(`/article/${article._id}`,article)
+  },
   delArticle (id) {
     return axios.delete(`/article/${id}`)
   },

@@ -7,7 +7,7 @@ export default {
     articleList:[],
     currentArticle:{},
     totalPage:0,
-    params:{page:1,perPage:10,sort:'created_at',order:'desc',tag:''}
+    params:{page:1,perPage:10,sort:'created_at',order:'desc',tag:'',status:''}
   },
   mutations:{
     SET_ARTICLE_LIST (state,article) {

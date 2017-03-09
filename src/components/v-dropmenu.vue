@@ -19,11 +19,13 @@ export default {
   },
   data () {
     return {
-      multiple:Array.isArray(this.value),
       key:this.optionKey || 'value'
     }
   },
   computed:{
+    multiple () {
+      return Array.isArray(this.value)
+    },
     opts () {
       return this.options.map(v => {
         if (typeof v !== 'object' || v === null) {

@@ -1,11 +1,16 @@
 <template>
-  <div>
-    <v-dropdown class="controller">
+  <div class="controller-wrap">
+    <v-dropdown  position="left" :hide-on-click="true">
+      <i class="fa fa-flag"></i>
+      <!--<span>状态</span>-->
+      <v-dropmenu slot="dropdown" :options="statusOptions" v-model="status"></v-dropmenu>
+    </v-dropdown>
+    <v-dropdown class="pull-right">
       <span>排序</span>
       <v-dropmenu slot="dropdown" :options="sortOptions" v-model="sort"></v-dropmenu>
       <v-dropmenu slot="dropdown" :options="orderOptions" v-model="order"></v-dropmenu>
     </v-dropdown>
-    <v-dropdown class="controller" :hide-on-click="true">
+    <v-dropdown class="tag-controller pull-right" :hide-on-click="true">
       <span>标签</span>
       <v-dropmenu slot="dropdown" :options="[{name:'全部',_id:''}]" option-key="_id" v-model="tag"></v-dropmenu>
       <v-dropmenu slot="dropdown" :options="tagOptions" option-key="_id" v-model="tag"></v-dropmenu>
@@ -46,17 +51,24 @@ export default {
         {name:'创建时间',value:'created_at'},
         {name:'更新时间',value:'updated_at'},
         {name:'标题',value:'title'}
+      ],
+      statusOptions:[
+        {name:'全部',value:''},
+        {name:'草稿',value:0},
+        {name:'已发布',value:1}
       ]
     }
   },
-  computed:setComputed(['order','sort','tag']),
+  computed:setComputed(['order','sort','tag','status']),
   methods:mapActions(['selectParam']),
 }
 </script>
 
 <style lang="less" scoped>
-.controller{
-  float: right;
+.controller-wrap{
+  padding:12px 20px;
+}
+.tag-controller{
   margin-right: 20px;
 }
 </style>

@@ -71,13 +71,13 @@ export default {
 .list-controller,.detail-controller{
   flex:none;
   height: 50px;
-  padding:12px 0;
   border-bottom: 1px solid @border-bg;
 }
 .page{
   padding:20px 0;
 }
 .detail-controller{
+  padding:12px 0;
   margin:0 25px;
 }
 .list,.detail{
