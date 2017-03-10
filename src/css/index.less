@@ -8,17 +8,19 @@ html{
   box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 body {
   font: 14px/1.5  "microsoft yahei", arial, tahoma, sans-serif;
   color:#73879C;
   background-color:#fff;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
+
 
 .clearfix::after{
   content:"";

@@ -7,19 +7,11 @@
   right:@right;
 }
 
-.reset-heading(@n,@i:1) when(@i <= @n) {
-  h@{i} {
-    font-size: 14px + (6 - @i)*2;
-  }
-  .reset-heading(@n,(@i + 1))
-}
-
 .scrollbar() {
   &::-webkit-scrollbar {
       width: 8px;
       height: 8px;
   }
-
   //  /* 滚动槽 */
   &::-webkit-scrollbar-track {
       border-radius: 10px;
@@ -45,7 +37,6 @@
       border-radius: 10px;
       box-shadow: inset 1px 1px 0 rgba(0,0,0,.1);
   }
-
 }
 
 

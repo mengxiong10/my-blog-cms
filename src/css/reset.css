@@ -2,9 +2,26 @@ body, blockquote, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr
   margin: 0;
   padding: 0
 }
-code, kbd, pre, samp {
-  font-family: courier new, courier, monospace
+h1{
+  font-size: 24px;
 }
+h2{
+  font-size: 22px;
+}
+h3{
+  font-size: 20px;
+}
+h4{
+  font-size: 18px;
+}
+h5{
+  font-size: 16px;
+}
+h6{
+  font-size:14px;
+}
+
+
 ol, ul {
   list-style: none
 }
