@@ -3,47 +3,31 @@
     <v-dropdown class="tag-wrap" position="left">
       <i class="fa fa-tags"> 标签</i>
       <v-dropmenu slot="dropdown" :options="tagOptions" option-key="_id" v-model="tags"></v-dropmenu>
-      <v-dropmenu slot="dropdown" :options="['添加标签']" @input="showDialog = true"></v-dropmenu>
+      <v-dropmenu slot="dropdown" :options="['添加标签']" @input="showDialog"></v-dropmenu>
     </v-dropdown>
-    <v-dialog v-model="showDialog" title="添加标签">
-      <form id="tag-form" @submit.prevent="saveTag">
-        <input class="form-text" type="text" placeholder="创建新标签" v-model="tag" required>
-      </form>
-      <button class="btn btn-primary" form="tag-form" slot="footer">创建</button>
-    </v-dialog>
+    <add-tag  ref="tagForm"></add-tag>
   </section>
 </template>
 
 <script>
 import {mapState, mapActions} from 'vuex'
+import AddTag from 'src/views/tags/add'
 export default {
   name:'tagSection',
+  components:{AddTag},
   props:{
+    //已选中的标签
     tags:Array
   },
-  data () {
-    return {
-      showDialog:false,
-      tag:'',
-    }
-  },
   computed:mapState({
+    //所有标签
     tagOptions : ({tag}) => tag.tagList
   }),
-  watch:{
-    showDialog (val) {
-      if (val) {
-        this.tag = ''
-      }
-    }
-  },
   methods:{
-    saveTag () {
-      this.addTag(this.tag).then(()=>{
-        this.showDialog = false
-      })
+    showDialog () {
+      this.$refs.tagForm.show()
     },
-    ...mapActions(['getTagList','addTag'])
+    ...mapActions(['getTagList'])
   },
   created () {
     this.getTagList()

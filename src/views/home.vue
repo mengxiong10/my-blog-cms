@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <div class="sidebar-section">
       <sidebar-header></sidebar-header>
       <sidebar-nav></sidebar-nav>

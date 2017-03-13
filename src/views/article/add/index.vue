@@ -64,15 +64,18 @@ export default {
     changeStatus (status) {
       this.article.status = status
     },
-    saveArticle (e) {
-      var method = this.isArticleAdd ? api.addArticle : api.updateArticle
-      method(this.article).then(res => {
+    saveArticle () {
+      let p = this.isArticleAdd 
+              ? api.addArticle(this.article) 
+              : api.updateArticle(this.article._id,this.article)
+      p.then(res => {
         window.alert('保存成功')
         this.$router.push({name:'articleList'})
       })
     },
   },
   created () {
+    console.log(this.$root);
     this.getArticle()
   }
 }

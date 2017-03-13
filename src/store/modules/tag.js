@@ -11,6 +11,12 @@ export default {
     },
     ADD_TAG (state,tag){
       state.tagList.push(tag)
+    },
+    UPDATE_TAG(state,{tag,index}){
+      state.tagList.splice(index,1,tag)
+    },
+    DEL_TAG(state,index){
+      state.tagList.splice(index,1)
     }
   },
   actions:{
@@ -21,8 +27,19 @@ export default {
       })
     },
     addTag ({commit},tag) {
-      return api.addTag({name:tag}).then(res => {
+      return api.addTag(tag).then(res => {
         commit('ADD_TAG',res.data.data)
+      })
+    },
+    updateTag ({commit},{tag,index}) {
+      return api.updateTag(tag._id,tag).then(res => {
+        commit('UPDATE_TAG',{tag:res.data.data,index})
+      })
+    },
+    delTag({state,commit},index) {
+      const id = state.tagList[index]._id
+      return api.delTag(id).then(() => {
+        commit('DEL_TAG',index)
       })
     }
   }

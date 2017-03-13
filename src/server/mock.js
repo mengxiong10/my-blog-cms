@@ -10,7 +10,7 @@ Mock.mock(/\/article\/list/,{
     "comment_count|1-200":1,
     "visit_count|1-200":1,
     "status|1":[0,1],
-    "tags|1-2":["@word(2)"]
+    "tags|1-2":[{name:"@word(2)"}]
   }],
   "total":200
 })
@@ -22,3 +22,12 @@ Mock.mock(/\/tag\/list/,{
   }]
 })
 
+Mock.mock(/\/tag/,'post', (options) => {
+  let data = JSON.parse(options.body)
+  data._id = Mock.mock('@id')
+  return {data}
+})
+
+Mock.mock(/\/tag\/\d+/,'delete','ok')
+
+Mock.mock(/\/tag\/\d+/,'put',(options) => ({data:JSON.parse(options.body)}))

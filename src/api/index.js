@@ -16,16 +16,16 @@ axios.interceptors.response.use(function (res) {
 
 export default {
   getArticleList (params) {
-    return axios.get('/article/list',{params})
+    return axios.get(`/article/list`,{params})
   },
   getArticleDetail (id) {
     return axios.get(`/article/${id}`)
   },
   addArticle (article) {
-    return axios.post('/article',article)
+    return axios.post(`/article`,article)
   },
-  updateArticle (article){
-    return axios.put(`/article/${article._id}`,article)
+  updateArticle (id,article){
+    return axios.put(`/article/${id}`,article)
   },
   delArticle (id) {
     return axios.delete(`/article/${id}`)
@@ -34,9 +34,15 @@ export default {
     return axios.put(`/article/${id}/status/${status}`)
   },
   getTagList () {
-    return axios.get('/tag/list')
+    return axios.get(`/tag/list`)
   },
-  addTag (body) {
-    return axios.post('/tag',body)
+  addTag (tag) {
+    return axios.post(`/tag`,tag)
+  },
+  updateTag (id,tag) {
+    return axios.put(`/tag/${id}`,tag)
+  },
+  delTag (id) {
+    return axios.delete(`/tag/${id}`)
   }
 }

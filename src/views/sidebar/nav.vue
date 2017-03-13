@@ -69,7 +69,7 @@ export default{
 }
 .router-link-active{
   background: @left-nav-active-bg;
-  border-left-color:@blue;
+  // border-left-color:@blue;
 }
 
 </style>

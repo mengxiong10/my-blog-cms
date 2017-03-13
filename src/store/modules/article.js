@@ -30,8 +30,8 @@ export default {
   actions:{
     getArticleList ({state,commit,dispatch}){
       return api.getArticleList(state.params).then(res => {
-        var list = res.data.data || []
-        var total = Math.ceil(res.data.total / state.params.perPage)
+        const list = res.data.data || []
+        const total = Math.ceil(res.data.total / state.params.perPage)
         commit('SET_ARTICLE_LIST',{list,total})
         //默认选中第一篇文章
         if (list.length && state.currentArticle._id === undefined) {
@@ -39,9 +39,14 @@ export default {
         }
       })
     },
-    delCurrentArticle({commit,dispatch}){
-      commit('DELETE_ARTICLE')
-      dispatch('getArticleList')
+    delCurrentArticle({state,commit,dispatch}){
+      if (window.confirm('确认删除吗')) {
+        const id = state.currentArticle._id
+        return api.delArticle(id).then(() => {
+          commit('DELETE_ARTICLE')
+          dispatch('getArticleList')
+        })
+      }
     },
     //选中当前文章
     selectArticle ({state,commit},article) {
@@ -51,8 +56,12 @@ export default {
       commit('SET_PARAMS',param)
       dispatch('getArticleList')
     },
-    updateArticleStatus({commit},status){
-      commit('UPDATE_ARTICLE_STATUS',status)
+    updateArticleStatus({state,commit}){
+      const id = state.currentArticle._id
+      const status = state.currentArticle.status ^ 1
+      return api.updateArticleStatus(id,status).then(res => {
+        commit('UPDATE_ARTICLE_STATUS',res.data.status)
+      })
     }
   }
 }
