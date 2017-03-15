@@ -1,5 +1,5 @@
 <template>
-  <div class="tag-list-wrap">
+  <div class="tag-list-section">
     <h3 class="tag-title">标签</h3>
     <ul class="tag-list">
       <li class="tag" v-for="(tag,index) in tagList" @click="edit(tag,index)">
@@ -52,7 +52,7 @@ export default {
 
 <style lang="less" scoped>
 @import '~css/varible.less';
-.tag-list-wrap{
+.tag-list-section{
   padding:10px 20px;
 }
 .tag-title{
@@ -63,6 +63,7 @@ export default {
   padding:1em;
   background: #fff;
   border:1px solid @border-bg;
+  border-radius: 4px;
 }
 .fa-times:hover{
   color:@red;

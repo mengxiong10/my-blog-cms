@@ -15,6 +15,12 @@ axios.interceptors.response.use(function (res) {
 })
 
 export default {
+  upload (fd) {
+    return axios.post(`/upload`,fd).then(res => {
+      res.data.data = axios.defaults.baseURL + '/' + res.data.data
+      return res 
+    })
+  },
   getArticleList (params) {
     return axios.get(`/article/list`,{params})
   },
