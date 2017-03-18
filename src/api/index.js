@@ -15,14 +15,14 @@ axios.defaults.baseURL = 'http://localhost:9000'
 // })
 
 export default {
-  upload (fd) {
-    return axios.post(`/upload`,fd).then(res => {
+  upload(fd) {
+    return axios.post('/upload', fd).then((res) => {
       res.data.data = axios.defaults.baseURL + '/' + res.data.data
-      return res 
+      return res
     })
   },
-  getArticleList (params) {
-    return axios.get(`/article/list`,{params})
+  getArticleList(params) {
+    return axios.get('/article/list', { params })
   },
   getArticleDetail(id) {
     return axios.get(`/article/${id}`)
