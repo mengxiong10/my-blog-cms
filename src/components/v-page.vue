@@ -17,48 +17,47 @@
 </template>
 
 <script>
-
 export default {
-  props:{
-    total:{
-      type:Number,
-      default:1
+  props: {
+    total: {
+      type: Number,
+      default: 1,
     },
-    value:{
-      type:Number,
-      default:1
-    }
+    value: {
+      type: Number,
+      default: 1,
+    },
   },
-  computed:{
-    currentPage:{
-      get () {
+  computed: {
+    currentPage: {
+      get() {
         return this.value
       },
-      set (newVal){
-        this.$emit('input',newVal)
+      set(newVal) {
+        this.$emit('input', newVal)
       }
     },
-    pages () {
-      let current = this.currentPage
-      let last = this.total
+    pages() {
+      const current = this.currentPage
+      const last = this.total
       if (last <= 7) {
-        return Array.apply(null,{length:last}).map((v,i)=> i + 1)
-      }else if (current - 3 <= 1) {
+        return Array.apply(null, { length: last }).map((v, i) => i + 1)
+      } else if (current - 3 <= 1) {
         return [1, 2, 3, 4, 5, 6, '...', last]
-      }else if (current + 3 >= last){
+      } else if (current + 3 >= last) {
         return [1, '...', last - 5, last - 4, last - 3, last - 2, last - 1, last]
-      }else{
+      } else {
         return [1, '...', current - 2, current - 1, current, current + 1, current + 2, '...', last]
       }
-    }
+    },
   },
-  watch:{
-    total (val) {
+  watch: {
+    total(val) {
       if (this.currentPage > val) {
         this.currentPage = val
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

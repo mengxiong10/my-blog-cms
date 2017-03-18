@@ -1,23 +1,30 @@
+// http://eslint.org/docs/user-guide/configuring
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true,
-        "node": true
-    },
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "sourceType": "module"
-    },
-    "rules": {
-        "no-const-assign": "warn",
-        "no-this-before-super": "warn",
-        "no-undef": "warn",
-        "no-unreachable": "warn",
-        "no-unused-vars": "warn",
-        "constructor-super": "warn",
-        "valid-typeof": "warn"
+  "parserOptions": {
+    "ecmaFeatures":{
+      "modules": true 
     }
+  },
+  "env": {
+    "browser": true
+  },
+  "extends": "airbnb-base",
+  "plugins": [
+    "html"
+  ],
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "build/webpack.base.conf.js"
+      }
+    }
+  },
+  "rules": {
+    "import/extensions": "off",
+    "semi":["error","never"],
+    "linebreak-style":"off",
+    "no-param-reassign": ["error", { "props": false }],
+    "no-underscore-dangle":["error", { "allow": ["_id"]}],
+    "no-bitwise":"off"
+  }
 }

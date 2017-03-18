@@ -8,44 +8,44 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
-import api from 'src/api'
+import { mapActions } from 'vuex'
+
 export default {
-  name:'addTag',
-  props:{
-    tag:Object,
-    index:{
-      type:Number,
-      default:-1
-    }
-  },
-  data () {
-    return {
-      showDialog:false,
-      internalTag:this.tag ? JSON.parse(JSON.stringify(this.tag)) : {name:''}
-    }
-  },
-  watch:{
-    showDialog (newVal) {
-      if (newVal) {
-        this.internalTag = this.tag ? JSON.parse(JSON.stringify(this.tag)) : {name:''}
-      }
-    }
-  },
-  methods:{
-    show () {
-      this.showDialog = true 
+  name: 'addTag',
+  props: {
+    tag: Object,
+    index: {
+      type: Number,
+      default: -1,
     },
-    saveTag () {
-      let p = this.internalTag._id 
-              ? this.updateTag({tag:this.internalTag,index:this.index}) 
-              : this.addTag(this.internalTag)
-      p.then(()=>{
+  },
+  data() {
+    return {
+      showDialog: false,
+      internalTag: this.tag ? JSON.parse(JSON.stringify(this.tag)) : { name: '' },
+    }
+  },
+  watch: {
+    showDialog(newVal) {
+      if (newVal) {
+        this.internalTag = this.tag ? JSON.parse(JSON.stringify(this.tag)) : { name: '' }
+      }
+    },
+  },
+  methods: {
+    show() {
+      this.showDialog = true
+    },
+    saveTag() {
+      const p = this.internalTag._id
+        ? this.updateTag({ tag: this.internalTag, index: this.index })
+        : this.addTag(this.internalTag)
+      p.then(() => {
         this.showDialog = false
       })
     },
-    ...mapActions(['addTag','updateTag'])
-  }
+    ...mapActions(['addTag', 'updateTag']),
+  },
 }
 </script>
 

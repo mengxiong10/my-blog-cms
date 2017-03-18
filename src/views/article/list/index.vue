@@ -15,36 +15,36 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import ArticleList from './article-list.vue'
 import ArticleDetail from './article-detail.vue'
 import ArticleListController from './article-list-controller.vue'
 import ArticleDetailController from './article-detail-controller.vue'
-import {mapState, mapActions} from 'vuex'
 
 export default {
-  name:'article',
-  components:{ArticleList,ArticleDetail,ArticleListController,ArticleDetailController},
-  computed:{
-    currentPage :{
-      get () {
+  name: 'article',
+  components: { ArticleList, ArticleDetail, ArticleListController, ArticleDetailController },
+  computed: {
+    currentPage: {
+      get() {
         return this.$store.state.article.params.page
       },
-      set (page) {
-        this.selectParam({page})
-      }
+      set(page) {
+        this.selectParam({ page })
+      },
     },
     ...mapState({
-      totalPage     : ({article}) => article.totalPage,
-      articles      : ({article}) => article.articleList,
-      currentArticle: ({article}) => article.currentArticle,
-      tagList       : ({tag})     => tag.tagList
-    })
+      totalPage: ({ article }) => article.totalPage,
+      articles: ({ article }) => article.articleList,
+      currentArticle: ({ article }) => article.currentArticle,
+      tagList: ({ tag }) => tag.tagList,
+    }),
   },
-  methods:mapActions(['getArticleList','selectParam','getTagList']),
-  created () {
+  methods: mapActions(['getArticleList', 'selectParam', 'getTagList']),
+  created() {
     this.getArticleList()
     this.getTagList()
-  }
+  },
 }
 </script>
 

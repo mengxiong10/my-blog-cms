@@ -20,16 +20,17 @@
 
 <script>
 import links from './nav.js'
-export default{
-  name:'nav',
-  data () {
+
+export default {
+  name: 'nav',
+  data() {
     return {
       links,
     }
   },
-  methods:{
+  methods: {
 
-  }
+  },
 }
 </script>
 

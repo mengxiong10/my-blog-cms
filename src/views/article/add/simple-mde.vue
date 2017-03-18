@@ -3,37 +3,38 @@
 </template>
 
 <script>
-import Simplemde from 'simplemde'
 import 'simplemde/dist/simplemde.min.css'
+import Simplemde from 'simplemde'
+
 export default {
-  props:['value'],
-  data () {
+  props: ['value'],
+  data() {
     return {
-      mde:null
+      mde: null,
     }
   },
-  watch:{
-    value (newVal) {
+  watch: {
+    value(newVal) {
       if (newVal === this.mde.value()) {
-        return 
+        return
       }
       this.mde.value(newVal)
-    }
+    },
   },
-  mounted () {
+  mounted() {
     this.mde = new Simplemde({
-      autoDownloadFontAwesome:false,
-      element:this.$refs.editor,
-      spellChecker:false,
+      autoDownloadFontAwesome: false,
+      element: this.$refs.editor,
+      spellChecker: false,
     })
     this.mde.value(this.value)
-    this.mde.codemirror.on('change',()=>{
-      this.$emit('input',this.mde.value())
+    this.mde.codemirror.on('change', () => {
+      this.$emit('input', this.mde.value())
     })
   },
-  beforeDestroy () {
+  beforeDestroy() {
     this.mde.toTextArea()
-  }
+  },
 }
 
 </script>

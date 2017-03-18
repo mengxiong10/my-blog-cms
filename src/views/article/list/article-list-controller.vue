@@ -19,48 +19,47 @@
 </template>
 
 <script>
-import {mapState,mapActions} from 'vuex'
-import api from 'src/api'
+import { mapActions } from 'vuex'
 
 const setComputed = function (keys) {
   const res = {}
-  keys.forEach(key => {
+  keys.forEach((key) => {
     res[key] = {
-      get () {
+      get() {
         return this.$store.state.article.params[key]
       },
-      set (val) {
-        this.selectParam({[key]:val})
-      }
+      set(val) {
+        this.selectParam({ [key]: val })
+      },
     }
   })
   return res
 }
 
 export default {
-  props:{
-    tagOptions:Array
+  props: {
+    tagOptions: Array,
   },
-  data () {
+  data() {
     return {
-      orderOptions:[
-        {name:'升序',value:'asc'},
-        {name:'降序',value:'desc'}
+      orderOptions: [
+        { name: '升序', value: 'asc' },
+        { name: '降序', value: 'desc' },
       ],
-      sortOptions:[
-        {name:'创建时间',value:'created_at'},
-        {name:'更新时间',value:'updated_at'},
-        {name:'标题',value:'title'}
+      sortOptions: [
+        { name: '创建时间', value: 'created_at' },
+        { name: '更新时间', value: 'updated_at' },
+        { name: '标题', value: 'title' },
       ],
-      statusOptions:[
-        {name:'全部',value:''},
-        {name:'草稿',value:0},
-        {name:'已发布',value:1}
-      ]
+      statusOptions: [
+        { name: '全部', value: '' },
+        { name: '草稿', value: 0 },
+        { name: '已发布', value: 1 },
+      ],
     }
   },
-  computed:setComputed(['order','sort','tag','status']),
-  methods:mapActions(['selectParam']),
+  computed: setComputed(['order', 'sort', 'tag', 'status']),
+  methods: mapActions(['selectParam']),
 }
 </script>
 

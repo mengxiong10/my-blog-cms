@@ -14,15 +14,15 @@
 </template>
 
 <script>
-import {mapActions} from 'vuex'
-import Vue from 'vue'
+import { mapActions } from 'vuex'
+
 export default {
-  name:'articleList',
-  props:{
-    articles:Array,
-    currentArticle:Object
+  name: 'articleList',
+  props: {
+    articles: Array,
+    currentArticle: Object,
   },
-  methods:mapActions(['selectArticle'])
+  methods: mapActions(['selectArticle']),
 }
 </script>
 

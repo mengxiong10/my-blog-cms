@@ -12,51 +12,52 @@
 
 <script>
 export default {
-  props:{
-    value:null,
-    options:Array,
-    optionKey:String
+  props: {
+    value: null,
+    options: Array,
+    optionKey: String,
   },
-  data () {
+  data() {
     return {
-      key:this.optionKey || 'value'
+      key: this.optionKey || 'value',
     }
   },
-  computed:{
-    multiple () {
+  computed: {
+    multiple() {
       return Array.isArray(this.value)
     },
-    opts () {
+    opts() {
       return this.options.map(v => {
         if (typeof v !== 'object' || v === null) {
-          return {name:v,value:v}
-        }else{
+          return { name: v, value: v }
+        } else {
           return v
         }
       })
-    }
+    },
   },
-  methods:{
-    isSelected (option) {
+  methods: {
+    isSelected(option) {
       if (this.multiple) {
         return this.value.indexOf(option[this.key]) > -1
       } else {
         return this.value === option[this.key]
       }
     },
-    selectValue (option) {
-      if(this.multiple){
-        var index = this.value.indexOf(option[this.key])
-        if(index >= 0) {
-          this.value.splice(index,1)
-        }else {
+    selectValue(option) {
+      let index
+      if (this.multiple) {
+        index = this.value.indexOf(option[this.key])
+        if (index >= 0) {
+          this.value.splice(index, 1)
+        } else {
           this.value.push(option[this.key])
         }
-      }else{
-        this.$emit('input',option[this.key])
+      } else {
+        this.$emit('input', option[this.key])
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

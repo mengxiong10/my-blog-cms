@@ -15,39 +15,39 @@
 
 <script>
 export default {
-  props:{
-    //选择菜单选项后关闭
-    hideOnClick:{
-      type:Boolean,
-      default:false
+  props: {
+    // 选择菜单选项后关闭
+    hideOnClick: {
+      type: Boolean,
+      default: false,
     },
-    position:{
-      type:String,
-      default:'right'
-    }
+    position: {
+      type: String,
+      default: 'right',
+    },
   },
-  data () {
+  data() {
     return {
-      show:false
+      show: false,
     }
   },
-  methods:{
-    activate () {
+  methods: {
+    activate() {
       if (this.show) return
       this.show = true
       this.$el.focus()
     },
-    deactivate () {
+    deactivate() {
       if (!this.show) return
       this.show = false
       this.$el.blur()
     },
-    hide () {
+    hide() {
       if (this.hideOnClick) {
         this.deactivate()
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

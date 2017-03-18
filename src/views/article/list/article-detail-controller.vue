@@ -7,24 +7,24 @@
 </template>
 
 <script>
-import api from 'src/api'
-import {mapActions} from 'vuex'
+import { mapActions } from 'vuex'
+
 export default {
-  name:'articleDetailController',
-  props:{
-    article:Object
+  name: 'articleDetailController',
+  props: {
+    article: Object,
   },
-  computed:{
-    statusText () {
+  computed: {
+    statusText() {
       return this.article.status ? '撤回' : '发布'
-    }
+    },
   },
-  methods:{
-    ...mapActions(['delCurrentArticle','updateArticleStatus']),
-    edit () {
-      this.$router.push({name:'articleEdit',params:{id:this.article._id}})
-    }
-  }
+  methods: {
+    ...mapActions(['delCurrentArticle', 'updateArticleStatus']),
+    edit() {
+      this.$router.push({ name: 'articleEdit', params: { id: this.article._id } })
+    },
+  },
 }
 </script>
 

@@ -23,10 +23,9 @@
 </template>
 
 <script>
+import api from 'src/api'
 import SimpleMde from './simple-mde.vue'
 import TagSection from './tag-section.vue'
-import api from 'src/api'
-import {mapState, mapActions} from 'vuex'
 
 function Article() {
   this.title = ''
@@ -36,48 +35,47 @@ function Article() {
 }
 
 export default {
-  name:'articleAdd',
-  components:{SimpleMde,TagSection},
-  data () {
+  name: 'articleAdd',
+  components: { SimpleMde, TagSection },
+  data() {
     return {
-      article:{}
+      article: {},
     }
   },
-  computed:{
-    isArticleAdd () {
+  computed: {
+    isArticleAdd() {
       return this.$route.name === 'articleAdd'
-    }
+    },
   },
-  watch:{
-    '$route':'getArticle'
+  watch: {
+    '$route': 'getArticle',
   },
-  methods:{
-    getArticle (){
+  methods: {
+    getArticle() {
       if (this.isArticleAdd) {
         this.article = new Article()
-      }else{
-        api.getArticleDetail(this.$route.params.id).then(res => {
+      } else {
+        api.getArticleDetail(this.$route.params.id).then((res) => {
           this.article = res.data.data
         })
       }
     },
-    changeStatus (status) {
+    changeStatus(status) {
       this.article.status = status
     },
-    saveArticle () {
-      let p = this.isArticleAdd 
-              ? api.addArticle(this.article) 
-              : api.updateArticle(this.article._id,this.article)
-      p.then(res => {
+    saveArticle() {
+      const p = this.isArticleAdd
+        ? api.addArticle(this.article)
+        : api.updateArticle(this.article._id, this.article)
+      p.then(() => {
         window.alert('保存成功')
-        this.$router.push({name:'articleList'})
+        this.$router.push({ name: 'articleList' })
       })
     },
   },
-  created () {
-    console.log(this.$root);
+  created() {
     this.getArticle()
-  }
+  },
 }
 </script>
 

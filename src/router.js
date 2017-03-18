@@ -1,4 +1,5 @@
 import Vue from 'vue'
+
 import Router from 'vue-router'
 
 import Home from './views/home.vue'
@@ -18,19 +19,19 @@ export default new Router({
     children: [{
       name: 'articleList',
       path: 'article/list',
-      component: articleList
-    },{
+      component: articleList,
+    }, {
       name: 'articleAdd',
       path: 'article/add',
-      component: articleAdd
-    },{
+      component: articleAdd,
+    }, {
       name: 'articleEdit',
       path: 'article/:id/update',
-      component:articleAdd 
-    },{
+      component: articleAdd,
+    }, {
       name: 'tagList',
-      path:'tag/list',
-      component:tagList
-    }]
-  }]
+      path: 'tag/list',
+      component: tagList,
+    }],
+  }],
 })

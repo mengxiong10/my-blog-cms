@@ -13,28 +13,28 @@
 
 <script>
 export default {
-  props:{
-    value:Array
+  props: {
+    value: Array,
   },
-  data () {
-    return{
-      text:''
+  data() {
+    return {
+      text: '',
     }
   },
-  methods:{
-    del (index) {
+  methods: {
+    del(index) {
       if (index === -1 && this.text !== '') {
         return
       }
-      this.value.splice(index,1)
+      this.value.splice(index, 1)
     },
-    add (text) {
+    add(text) {
       if (text !== '') {
         this.value.push(text)
         this.text = ''
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

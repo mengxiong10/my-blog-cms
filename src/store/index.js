@@ -8,8 +8,8 @@ import tag from './modules/tag.js'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  modules:{
+  modules: {
     article,
     tag,
-  }
+  },
 })

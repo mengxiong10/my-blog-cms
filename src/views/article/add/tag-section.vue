@@ -10,28 +10,29 @@
 </template>
 
 <script>
-import {mapState, mapActions} from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import AddTag from 'src/views/tags/add'
+
 export default {
-  name:'tagSection',
-  components:{AddTag},
-  props:{
-    //已选中的标签
-    tags:Array
+  name: 'tagSection',
+  components: { AddTag },
+  props: {
+    // 已选中的标签
+    tags: Array,
   },
-  computed:mapState({
-    //所有标签
-    tagOptions : ({tag}) => tag.tagList
+  computed: mapState({
+    // 所有标签
+    tagOptions: ({ tag }) => tag.tagList,
   }),
-  methods:{
-    showDialog () {
+  methods: {
+    showDialog() {
       this.$refs.tagForm.show()
     },
-    ...mapActions(['getTagList'])
+    ...mapActions(['getTagList']),
   },
-  created () {
+  created() {
     this.getTagList()
-  }
+  },
 }
 </script>
 

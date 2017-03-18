@@ -11,7 +11,7 @@
 <script>
 import api from 'src/api'
 export default {
-  data () {
+  data() {
     return {
       img:'',
     }
@@ -25,7 +25,7 @@ export default {
         this.img = res.data.data 
       })
     }
-  }
+  },
 }
 </script>
 

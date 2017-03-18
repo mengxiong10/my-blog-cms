@@ -14,13 +14,13 @@
 </template>
 
 <script>
-
 import SidebarNav from './sidebar/nav.vue'
 import SidebarHeader from './sidebar/header.vue'
 import HeaderView from './header'
+
 export default {
-  components:{SidebarHeader,SidebarNav,HeaderView},
-  name:'home',
+  components: { SidebarHeader, SidebarNav, HeaderView },
+  name: 'home',
 }
 </script>
 

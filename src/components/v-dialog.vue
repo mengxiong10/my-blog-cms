@@ -17,18 +17,18 @@
 
 <script>
   export default {
-    props:{
-      title:String,
-      value:{
-        type:Boolean,
-        default:false
-      }
+    props: {
+      title: String,
+      value: {
+        type: Boolean,
+        default: false,
+      },
     },
-    methods:{
-      close () {
-        this.$emit('input',false)
-      }
-    }
+    methods: {
+      close() {
+        this.$emit('input', false)
+      },
+    },
   }
 </script>
 

@@ -16,37 +16,38 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 import AddTag from './add.vue'
-import {mapState, mapActions} from 'vuex'
+
 export default {
-  name:'tagList',
-  components:{AddTag},
-  data () {
+  name: 'tagList',
+  components: { AddTag },
+  data() {
     return {
-      currentTag:null,
-      currentIndex:-1
+      currentTag: null,
+      currentIndex: -1,
     }
   },
-  computed:mapState({tagList: ({tag}) => tag.tagList}),
-  methods:{
-    edit (tag,index) {
+  computed: mapState({ tagList: ({ tag }) => tag.tagList }),
+  methods: {
+    edit(tag, index) {
       this.currentTag = tag
-      this.currentIndex = index 
+      this.currentIndex = index
       this.$refs.tagForm.show()
     },
-    showAdd () {
-      this.currentTag = null 
+    showAdd() {
+      this.currentTag = null
       this.currentIndex = -1
       this.$refs.tagForm.show()
     },
-    del (index) {
+    del(index) {
       this.delTag(index)
     },
-    ...mapActions(['getTagList','delTag'])
+    ...mapActions(['getTagList', 'delTag']),
   },
-  created(){
+  created() {
     this.getTagList()
-  }
+  },
 }
 </script>
 
