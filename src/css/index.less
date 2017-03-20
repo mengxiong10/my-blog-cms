@@ -15,11 +15,9 @@ html{
 
 body {
   font: 14px/1.5  "microsoft yahei", arial, tahoma, sans-serif;
-  color:#73879C;
-  background-color:#fff;
+  color:#73879c;
+  background-color:#f7f7f7;
 }
-
-
 
 .clearfix::after{
   content:"";
@@ -68,12 +66,19 @@ body {
   color:#fff;
   background: @green;
   border-color:darken(@green,10%);
-
+  &:hover{
+    background-color:lighten(@green,10%);
+    border-color:lighten(@green,10%);
+  }
 }
 .btn-primary {
   color: #fff;
   background-color: @blue;
   border-color: darken(@blue,10%);
+  &:hover{
+    background-color:lighten(@blue,10%);
+    border-color:lighten(@blue,10%);
+  }
 }
 .btn-text{
   color:@blue;
@@ -81,7 +86,6 @@ body {
   border:0;
   line-height: inherit;
 }
-
 .text-overflow{
   overflow: hidden;
   text-overflow:ellipsis;

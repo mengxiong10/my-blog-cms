@@ -6,13 +6,15 @@ import Home from './views/home.vue'
 import articleList from './views/article/list'
 import articleAdd from './views/article/add'
 import tagList from './views/tags'
+import Login from './views/login'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [{
-    path:'/test',
-    component:require('test.vue')
+    name:'login',
+    path:'/login',
+    component:Login 
   },{
     path: '/',
     component: Home,
