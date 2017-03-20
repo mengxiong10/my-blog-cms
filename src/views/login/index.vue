@@ -11,22 +11,23 @@
 
 <script>
 import api from 'src/api'
+
 export default {
   data() {
     return {
-      user:{
-        username:'',
-        password:'',
-      }
+      user: {
+        username: 'admin',
+        password: 'admin',
+      },
     }
   },
-  methods:{
+  methods: {
     login() {
-      api.login(this.user).then((res) => {
-        this.$router.push({name:'articleList'})
+      api.login(this.user).then(() => {
+        this.$router.push({ name: 'articleList' })
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

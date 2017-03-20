@@ -15,14 +15,14 @@ axios.defaults.baseURL = 'http://localhost:9000'
 // })
 
 export default {
-  login (user) {
-    return axios.post('/admin/login',user)
+  login(user) {
+    return axios.post('/admin/login', user)
   },
-  logout () {
+  logout() {
     return axios.post('/admin/logout')
   },
-  upload (fd) {
-    return axios.post(`/upload`,fd).then(res => {
+  upload(fd) {
+    return axios.post('/upload', fd).then((res) => {
       res.data.data = axios.defaults.baseURL + '/' + res.data.data
       return res
     })
