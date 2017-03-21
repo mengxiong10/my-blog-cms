@@ -28,3 +28,27 @@ export function formatDate (d,fmt) {
   if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
   return fmt;
 }
+
+export function slideToggle(el, duration = 1000) {
+  var start = Date.now()
+  var slideUp = el.clientHeight > 0 
+  // var c = false 
+  var targetHeight = 0  
+  var children = Array.prototype.slice.call(el.children)
+  children.forEach((el) => targetHeight += el.offsetHeight)
+  animate()
+  function animate() {
+    var now = Date.now()
+    var elapsed = now - start 
+    var fraction = elapsed / duration 
+    if (fraction < 1) {
+      var ratio = slideUp ? (1 - fraction) : fraction 
+      el.style.height = targetHeight * ratio + 'px'
+      setTimeout(animate,Math.min(25, elapsed)) 
+    }else {
+      var endHeight = slideUp ? 0 : targetHeight
+      el.style.height = endHeight + 'px'
+    }
+  }
+}
+

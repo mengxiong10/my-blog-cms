@@ -31,3 +31,5 @@ Mock.mock(/\/tag/, 'post', (options) => {
 Mock.mock(/\/tag\/\d+/, 'delete', 'ok')
 
 Mock.mock(/\/tag\/\d+/, 'put', (options) => ({ data: JSON.parse(options.body) }))
+
+Mock.mock(/\/admin\/login/, 'post', 'ok')

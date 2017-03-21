@@ -3,7 +3,7 @@ import router from './router'
 import store from './store'
 import './server/filter.js'
 
-// import './server/mock.js'
+import './server/mock.js'
 
 import './css/reset.css'
 import './css/index.less'

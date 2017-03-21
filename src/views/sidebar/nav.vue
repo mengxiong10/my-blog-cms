@@ -7,13 +7,11 @@
           <span>{{link.name}}</span>
           <i class="fa fa-angle-down fa-lg" :class="{'fa-rotate-180':link.open}"></i>
         </div>
-        <transition>
-          <ul v-show = "openLinkIndex === index" class="second-nav-wrap">
-            <li v-for="item in link.children">
-              <router-link class="second-nav" :to="item.path">{{item.name}}</router-link>
-            </li>
-          </ul>
-        </transition>
+        <ul class="second-nav-wrap" style="height:0" ref="haha">
+          <li v-for="item in link.children">
+            <router-link class="second-nav" :to="item.path">{{item.name}}</router-link>
+          </li>
+        </ul>
       </template>
       <router-link v-else class="first-nav" :to="link.path">{{link.name}}</router-link>
     </li>
@@ -21,20 +19,25 @@
 </template>
 
 <script>
+import { slideToggle } from 'src/server/utils'
 import links from './nav.js'
 
 export default {
   name: 'nav',
   data() {
     return {
-      openLinkIndex:0,
+      openLinkIndex: 0,
       links,
     }
   },
   methods: {
     extend(index) {
-      this.openLinkIndex = index === this.openLinkIndex ? -1 : index 
-    }
+      slideToggle(this.$refs.haha[index])
+      // this.openLinkIndex = index === this.openLinkIndex ? -1 : index
+    },
+  },
+  mounted() {
+    // console.log(this.$refs.haha[0].children)
   },
 }
 </script>
@@ -80,18 +83,17 @@ export default {
   // border-left-color:@blue;
 }
 .second-nav-wrap{
-  max-height:200px;
   overflow: hidden;
 }
-.v-enter,.v-leave-to{
-  max-height: 0;
-}
-.v-enter-active{
-  transition:max-height 1s ease;
-}
-.v-leave-active{
-  transition:max-height 1s linear;
-}
+// .v-enter,.v-leave-to{
+//   height: 0;
+// }
+// .v-enter-active{
+//   transition:height 1s ease;
+// }
+// .v-leave-active{
+//   transition:height 1s linear;
+// }
 
 
 </style>
