@@ -12,11 +12,11 @@ Vue.use(Router)
 
 export default new Router({
   routes: [{
-    name:'login',
-    path:'/login',
-    component:Login 
-  },{
-    path: '/',
+    name: 'login',
+    path: '/login',
+    component: Login
+  }, {
+    path: '/cms',
     component: Home,
     children: [{
       name: 'articleList',
@@ -35,5 +35,8 @@ export default new Router({
       path: 'tag/list',
       component: tagList,
     }],
+  }, {
+    path: '*',
+    redirect: '/login'
   }],
 })

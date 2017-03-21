@@ -1,18 +1,18 @@
 import axios from 'axios'
+import router from '../router.js'
 
 axios.defaults.baseURL = 'http://localhost:9000'
+axios.defaults.withCredentials = true 
 
-// axios.interceptors.request.use((req) => {
-//   return req
-// })
-
-// axios.interceptors.response.use((res) => {
-
-//   return res
-// }, (err)=> {
-
-//   return Promise.reject(err)
-// })
+axios.interceptors.response.use((res) => {
+  
+  return res
+}, (err) => {
+  if (err.response.status === 401) {
+    router.push('/login')
+  }
+  return Promise.reject(err)
+})
 
 export default {
   login(user) {

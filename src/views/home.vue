@@ -48,7 +48,6 @@ export default {
   bottom: 0;
   left: @left-nav-width;
   right: 0;
-  background: @main-bg;
   overflow-y:auto;
 }
 
