@@ -27,12 +27,12 @@ export default {
       })
     },
     addTag ({commit},tag) {
-      return api.addTag(tag).then(res => {
+      return api.addTag({name:tag}).then(res => {
         commit('ADD_TAG',res.data.data)
       })
     },
-    updateTag ({commit},{tag,index}) {
-      return api.updateTag(tag._id,tag).then(res => {
+    updateTag ({commit},{id, tag, index}) {
+      return api.updateTag(id,{name:tag}).then(res => {
         commit('UPDATE_TAG',{tag:res.data.data,index})
       })
     },

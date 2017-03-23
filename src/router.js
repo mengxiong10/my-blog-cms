@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 import Router from 'vue-router'
 
-import Home from './views/home.vue'
+import Container from './views/container.vue'
 import articleList from './views/article/list'
 import articleAdd from './views/article/add'
 import tagList from './views/tags'
@@ -17,7 +17,7 @@ export default new Router({
     component: Login
   }, {
     path: '/cms',
-    component: Home,
+    component: Container,
     children: [{
       name: 'articleList',
       path: 'article/list',

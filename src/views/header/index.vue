@@ -1,8 +1,5 @@
 <template>
-  <div class="logout">
-    <button class="btn">上传</button>
-    <input type="file" @change="upload">
-    <img :src="img" alt="">
+  <div class="logout" @click="logout">
     <i class="fa fa-power-off"></i>
     <span>退出登录</span>
   </div>
@@ -10,14 +7,21 @@
 
 <script>
 import api from 'src/api'
+
 export default {
+  name:'header',
   data() {
     return {
       img:'',
     }
   },
   methods:{
-    upload (e) {
+    logout() {
+      api.logout().then(() => {
+        this.$router.push({name:'login'})
+      })
+    },
+    upload(e) {
       const file = e.target.files[0]
       const fd = new FormData()
       fd.append('file',file)
@@ -32,6 +36,8 @@ export default {
 <style lang="less" scoped>
 .logout{
   float: right;
+  margin-top: 16px;
   margin-right: 30px;
+  cursor: pointer;
 }
 </style>

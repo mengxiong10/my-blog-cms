@@ -10,6 +10,7 @@
     <div class="content-section">
       <router-view></router-view>
     </div>
+    <v-modal></v-modal>
   </div>
 </template>
 
@@ -17,10 +18,11 @@
 import SidebarNav from './sidebar/nav.vue'
 import SidebarHeader from './sidebar/header.vue'
 import HeaderView from './header'
+import VModal from '../components/v-modal.vue'
 
 export default {
-  components: { SidebarHeader, SidebarNav, HeaderView },
-  name: 'home',
+  name: 'container',  
+  components: { SidebarHeader, SidebarNav, HeaderView, VModal },
 }
 </script>
 
@@ -37,7 +39,6 @@ export default {
 }
 .header-section{
   height: @header-height;
-  line-height: @header-height;
   background: @header-bg;
   color:@header-color;
   border-bottom: 1px solid @border-bg;

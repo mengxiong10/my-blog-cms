@@ -1,43 +1,66 @@
 <template>
   <ul class="nav-list">
-    <li v-for="(link, index) in links">
-      <template v-if="link.children">
-        <div class="first-nav" :class="{'active':openLinkIndex === index }" @click="extend(index)">
-          <i class="fa fa-file-text"></i>
-          <span>{{link.name}}</span>
-          <i class="fa fa-angle-down fa-lg" :class="{'fa-rotate-180':link.open}"></i>
-        </div>
-        <ul class="second-nav-wrap" style="height:0" ref="haha">
+    <li v-for="(link, index) in links" 
+        :class="{'active':actived(index)}">
+      <div @click="extend(index)">
+        <i class="fa icon"
+           :class="link.icon"></i>
+        <span class="first-nav"
+              v-if="link.children">
+          {{link.name}}
+          <i class="fa fa-angle-down fa-lg" :class="{'fa-rotate-180':actived(index)}"></i>
+        </span>
+        <router-link class="first-nav"
+                     v-else 
+                     :to="link.path">
+          {{link.name}}
+        </router-link>
+      </div>
+      <transition @beforeEnter="close"
+                  @enter="open"
+                  @beforeLeave="open"
+                  @leave="close">
+        <ul v-if="link.children"
+            v-show="actived(index)">
           <li v-for="item in link.children">
-            <router-link class="second-nav" :to="item.path">{{item.name}}</router-link>
+            <router-link class="second-nav"
+                         :to="item.path">{{item.name}}</router-link>
           </li>
         </ul>
-      </template>
-      <router-link v-else class="first-nav" :to="link.path">{{link.name}}</router-link>
+      </transition>
     </li>
   </ul>
 </template>
 
 <script>
-import { slideToggle } from 'src/server/utils'
 import links from './nav.js'
 
 export default {
-  name: 'nav',
+  name: 'sidebarNav',
   data() {
     return {
-      openLinkIndex: 0,
+      openLinkIndex: -1,
       links,
     }
   },
   methods: {
+    actived (i) {
+      return this.openLinkIndex === i 
+    },
     extend(index) {
-      slideToggle(this.$refs.haha[index])
-      // this.openLinkIndex = index === this.openLinkIndex ? -1 : index
+      this.openLinkIndex = index === this.openLinkIndex ? -1 : index
+    },
+    close(el) {
+      el.style.height = '0'
+      el.style.overflow = 'hidden'  
+    },
+    open(el) {
+      el.style.height = el.scrollHeight + 'px'
+      el.style.overflow = 'hidden'
     },
   },
   mounted() {
-    // console.log(this.$refs.haha[0].children)
+    this.extend(0)
   },
 }
 </script>
@@ -48,52 +71,43 @@ export default {
   font-size: 16px;
 }
 .fa-angle-down{
-  position: absolute;
-  right: 20px;
-  top:50%;
-  margin-top: -8px;
+  float: right;
+  line-height: 40px;
+  margin-right: 20px;
   transition:transform .3s;
 }
-.fa-file-text{
-  margin-right: .5em;
+.icon{
+  float: left;
+  line-height: 40px;
+  margin-left: 20px;
 }
 .first-nav,.second-nav{
-  position: relative;
   display: block;
   height: 40px;
   line-height: 40px;
+  cursor: pointer;
 }
 .first-nav{
-  padding-left: 1.5em;
+  padding-left: 3em;
   margin-bottom: 6px;
   font-weight: bold;
-  cursor: pointer;
 }
 .second-nav{
   padding-left:4em;
   font-size: 14px;
-  border-left: 3px solid transparent;
 }
 .active{
-  background: linear-gradient(#334556,#2C4257),#2A3F54;
-  box-shadow: 0 1px rgba(0,0,0,.2), inset 0 1px rgba(255,255,255,.2);
+  border-right:5px solid @green;
+  >div{
+    background: linear-gradient(#334556,#2C4257),#2A3F54;
+    box-shadow: 0 1px rgba(0,0,0,.2), inset 0 1px rgba(255,255,255,.2);
+  }
 }
 .router-link-active{
   background: @left-nav-active-bg;
-  // border-left-color:@blue;
 }
-.second-nav-wrap{
-  overflow: hidden;
+.v-enter-active,.v-leave-active{
+  transition: height .3s ease;
 }
-// .v-enter,.v-leave-to{
-//   height: 0;
-// }
-// .v-enter-active{
-//   transition:height 1s ease;
-// }
-// .v-leave-active{
-//   transition:height 1s linear;
-// }
-
 
 </style>

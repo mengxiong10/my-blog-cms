@@ -6,44 +6,35 @@
         <span>{{tag.name}}</span>
         <i class="fa fa-times" title="删除" @click.stop="del(index)"></i>
       </li>
-      <li class="tag" @click="showAdd">
+      <li class="tag" @click="add">
         <i class="fa fa-plus"></i>
         添加
       </li>
     </ul>
-    <add-tag :tag="currentTag" :index="currentIndex" ref="tagForm"></add-tag>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import AddTag from './add.vue'
 
 export default {
   name: 'tagList',
-  components: { AddTag },
-  data() {
-    return {
-      currentTag: null,
-      currentIndex: -1,
-    }
-  },
   computed: mapState({ tagList: ({ tag }) => tag.tagList }),
   methods: {
     edit(tag, index) {
-      this.currentTag = tag
-      this.currentIndex = index
-      this.$refs.tagForm.show()
+      this.$modal.prompt({title:'修改标签',text:tag.name}).then((data) => {
+        return this.updateTag({ id: tag._id, tag: data, index })
+      },() => {})
     },
-    showAdd() {
-      this.currentTag = null
-      this.currentIndex = -1
-      this.$refs.tagForm.show()
+    add() {
+      this.$modal.prompt({title:'添加标签'}).then((data) => {
+        return this.addTag(data)
+      },() => {})
     },
     del(index) {
       this.delTag(index)
     },
-    ...mapActions(['getTagList', 'delTag']),
+    ...mapActions(['getTagList', 'delTag', 'addTag', 'updateTag']),
   },
   created() {
     this.getTagList()

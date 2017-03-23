@@ -68,7 +68,7 @@ export default {
         ? api.addArticle(this.article)
         : api.updateArticle(this.article._id, this.article)
       p.then(() => {
-        window.alert('保存成功')
+        this.$modal.alert('保存成功')
         this.$router.push({ name: 'articleList' })
       })
     },

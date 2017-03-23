@@ -7,8 +7,6 @@ import './server/mock.js'
 
 import './css/reset.css'
 import './css/index.less'
-// import ElDatePicker from 'element-datepicker'
-// Vue.use(ElDatePicker)
 
 
 /* 自定义全局组件*/
@@ -20,10 +18,10 @@ Vue.component('v-dialog', require('components/v-dialog.vue'))
 
 /* eslint-disable */
 
-
 new Vue({
   el: '#app',
   router,
   store,
   template: '<router-view></router-view>',
 })
+

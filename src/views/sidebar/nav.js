@@ -1,5 +1,6 @@
 export default [{
   name: '文章管理',
+  icon: 'fa-file-text',
   children: [{
     name: '文章列表',
     path: { name: 'articleList' },
@@ -8,9 +9,7 @@ export default [{
     path: { name: 'articleAdd' },
   }],
 }, {
-  name: '标签管理',
-  children: [{
-    name: '标签列表',
-    path: { name: 'tagList' },
-  }],
+  name: '标签列表',
+  icon: 'fa-tags',
+  path: { name: 'tagList' },
 }]

@@ -1,13 +1,14 @@
 <template>
   <header class="clearfix">
     <h1>博客后台管理</h1>
-    <img class="profile-pic" src="../../image/admin.jpg" height="180" width="180" alt="">
+    <img class="profile-pic" src="../../image/admin.jpg" height="180" width="180" alt="avatar">
     <span class="profile-info">admin</span>
   </header>
 </template>
 
 <script>
 export default {
+  name:'sidebarHeader',
   data() {
     return {
 
@@ -16,27 +17,24 @@ export default {
 }
 </script>
 
-
 <style lang="less" scoped>
+
+header{
+  padding:10px;
+}
 h1{
   margin-left: 10px;
   margin-bottom: 10px;
 }
-header{
-  padding:10px;
-}
 .profile-pic {
-  float: left;
+  display:inline-block;
   width: 60px;
   height: 60px;
   padding: 4px;
-  margin:0 10px;
+  margin:10px;
+  vertical-align: middle;
   background: #fff;
   border: 1px solid rgba(52,73,94,.5);
   border-radius: 50%;
-
-}
-.profile-info{
-  line-height: 60px;
 }
 </style>
