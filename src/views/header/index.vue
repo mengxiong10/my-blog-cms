@@ -39,5 +39,6 @@ export default {
   margin-top: 16px;
   margin-right: 30px;
   cursor: pointer;
+  transform: translate(45px);
 }
 </style>
