@@ -34,7 +34,6 @@ h1{
   margin:10px;
   vertical-align: middle;
   background: #fff;
-  border: 1px solid rgba(52,73,94,.5);
   border-radius: 50%;
 }
 </style>

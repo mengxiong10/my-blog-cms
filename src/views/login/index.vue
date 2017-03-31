@@ -2,8 +2,8 @@
   <div>
     <form class="login-content" @submit.prevent="login">
       <h1 class="login-title">后台管理</h1>
-      <input type="text" class="form-text" v-model="user.username">
-      <input type="password" class="form-text" v-model="user.password">
+      <input type="text" class="login-input" v-model="user.username">
+      <input type="password" class="login-input" v-model="user.password">
       <v-button class="login-btn" native-type="submit" type="primary">登录</v-button>
     </form>
   </div>
@@ -38,9 +38,7 @@ export default {
 }
 .login-title{
   margin-bottom: 30px;
-  font-size: 24px;
-  font-family: Helvetica;
-  line-height: 1;
+  font-size: 24px/1;
   text-align: center;
   &::before,&::after{
     content:'';
@@ -56,7 +54,7 @@ export default {
     float:right;
   }
 }
-.form-text{
+.login-input{
   margin-bottom: 20px;
 }
 .login-btn{

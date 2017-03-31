@@ -5,13 +5,10 @@ import './server/filter.js'
 
 import './server/mock.js'
 
-import './css/index.less'
-
 import './css/index.css'
 
 /* 自定义全局组件*/
 Vue.component('v-button', require('components/v-button.vue'))
-Vue.component('v-input', require('components/v-input.vue'))
 Vue.component('v-dropdown', require('components/v-dropdown.vue'))
 Vue.component('v-dropmenu', require('components/v-dropmenu.vue'))
 Vue.component('v-tag-input', require('components/v-tag-input.vue'))

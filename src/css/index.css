@@ -1,9 +1,11 @@
 
-@import './reset.css';
-
 @import './varible.css'; 
 
-@import './utilities.css';
+@import './reset.css';
+
+@import './scrollbar.css';
+
+@import './util.css';
 
 
 

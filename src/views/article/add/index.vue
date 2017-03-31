@@ -4,7 +4,7 @@
     <form class="form-wrap" @submit.prevent="saveArticle">
       <section class="title-section">
         <label>标题 * </label>
-        <v-input type="text" v-model="article.title" required></v-input>
+        <input type="text" v-model="article.title" required>
       </section>
       <tag-section class="tag-section" :tags="article.tags"></tag-section>
       <section>

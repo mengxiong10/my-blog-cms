@@ -32,9 +32,11 @@ export default {
   height: 68px;
   padding:10px 20px;
   border-bottom:var(--border-default);
-  color:#5A738E;
   &:hover{
-    background: var(--color-gray);
+    background:color(var(--color-silver) tint(40%)) ;
+  }
+  &.active{
+    background: var(--color-silver);
   }
   & span{
     line-height: 2;
@@ -45,8 +47,6 @@ export default {
     margin-right: 0;
   }
 }
-.active{
-  background: #eee;
-}
+
 
 </style>

@@ -27,9 +27,9 @@ export default {
 </script>
 
 <style scoped>
-@import '../css/varible.css';
+@import 'varible.css';
 #app{
-  color:#73879c;
+  color:var(--color-slategrey);
   background-color:#f7f7f7;
 }
 .sidebar-section{
@@ -40,7 +40,7 @@ export default {
 .header-section{
   height: var(--header-height);
   color: var(--header-color) var(--header-bg);
-  border-bottom:1px solid var(--border-bg);
+  border-bottom:var(--border-default);
 }
 .content-section{
   position:absolute var(--header-height) 0 0 var(--left-nav-width);

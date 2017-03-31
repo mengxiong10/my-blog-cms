@@ -66,7 +66,7 @@ export default {
 </script>
 
 <style  scoped>
-@import 'varible';
+@import 'varible.css';
 .nav-list{
   font-size: 16px;
 }
@@ -99,7 +99,7 @@ export default {
 .active{
   border-right:5px solid var(--color-green);
   &>div{
-    background: linear-gradient(#334556,#2C4257),#2A3F54;
+    background: linear-gradient(#334556,#2C4257);
     box-shadow: 0 1px rgba(0,0,0,.2), inset 0 1px rgba(255,255,255,.2);
   }
 }
