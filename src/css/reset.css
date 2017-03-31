@@ -2,25 +2,6 @@ body, blockquote, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr
   margin: 0;
   padding: 0
 }
-h1{
-  font-size: 24px;
-}
-h2{
-  font-size: 22px;
-}
-h3{
-  font-size: 20px;
-}
-h4{
-  font-size: 18px;
-}
-h5{
-  font-size: 16px;
-}
-h6{
-  font-size:14px;
-}
-
 
 ol, ul {
   list-style: none
@@ -51,5 +32,70 @@ button, input, select, textarea {
 table {
   border-collapse: collapse;
   border-spacing: 0
+}
+
+html{
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei",sans-serif;
+  color: #333;
+  background-color: #fff;
+}
+
+h1{
+  font-size: 24px;
+}
+h2{
+  font-size: 22px;
+}
+h3{
+  font-size: 20px;
+}
+h4{
+  font-size: 18px;
+}
+h5{
+  font-size: 16px;
+}
+h6{
+  font-size:14px;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+ /* 滚动槽 */
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0);
+}
+::-webkit-scrollbar-track:hover {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+    background-color: rgba(0,0,0,0.01);
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0,0,0,0.4);
+    box-shadow: inset 1px 1px 0 rgba(0,0,0,.1);
+}
+:hover::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    box-shadow: inset 1px 1px 0 rgba(0,0,0,.1);
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.05);
+    border-radius: 10px;
+    box-shadow: inset 1px 1px 0 rgba(0,0,0,.1);
 }
 

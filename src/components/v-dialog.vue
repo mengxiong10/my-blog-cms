@@ -10,16 +10,13 @@
           <slot></slot>
         </div>
         <div class="dialog-footer">
-          <button class="btn btn-default"
-                  type="button"
+          <v-button type="default"
                   style="margin-right:10px;"
                   v-if="showCancelButton"
-                  @click="cancel">取消</button>
-          <button class="btn btn-primary"
-                  :type="formId ? 'submit' : 'button'"
-                  :form="formId"
+                  @click.native="cancel">取消</v-button>
+          <v-button type="primary"
                   v-if="showConfirmButton"
-                  @click="confirm">确定</button>
+                  @click.native="confirm">确定</v-button>
         </div>
       </div>
     </div>
@@ -30,7 +27,6 @@
   export default {
     props: {
       title: String,
-      formId:String,      
       //显示dialog 
       value: {
         type: Boolean,
@@ -57,8 +53,8 @@
   }
 </script>
 
-<style lang="less" scoped>
-@import '~css/varible.less';
+<style scoped>
+@import 'varible.css';
 .shade{
   position: fixed;
   top:0;
@@ -70,13 +66,13 @@
 }
 .shade-enter-active,.shade-leave-active{
   transition:opacity .3s;
-  >.dialog{
+  &>.dialog{
     transition:transform .3s;
   }
 }
 .shade-enter,.shade-leave-to{
   opacity:0;
-  >.dialog{
+  &>.dialog{
     transform:translate(-50%,-50px);
   }
 }
@@ -109,12 +105,11 @@
   padding:20px;
   text-align: right;
 }
-
 .fa-close{
-  color: @gray;
+  color: var(--color-gray);
   cursor: pointer;
   &:hover{
-    color:@blue;
+    color:var(--color-blue);
   }
 }
 

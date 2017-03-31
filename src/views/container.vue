@@ -26,30 +26,24 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~css/varible.less';
+<style scoped>
+@import '../css/varible.css';
+#app{
+  color:#73879c;
+  background-color:#f7f7f7;
+}
 .sidebar-section{
-  position: absolute;
-  top:0;
-  bottom: 0;
-  left:0;
-  width:@left-nav-width;
-  color:@left-nav-color;
-  background: @left-nav-bg;
+  position: absolute 0 * 0 0;
+  width:var(--left-nav-width);  
+  color:var(--left-nav-color) var(--left-nav-bg);
 }
 .header-section{
-  height: @header-height;
-  background: @header-bg;
-  color:@header-color;
-  border-bottom: 1px solid @border-bg;
+  height: var(--header-height);
+  color: var(--header-color) var(--header-bg);
+  border-bottom:1px solid var(--border-bg);
 }
 .content-section{
-  position: absolute;
-  top:@header-height;
-  bottom: 0;
-  left: @left-nav-width;
-  right: 0;
-  overflow-y:auto;
+  position:absolute var(--header-height) 0 0 var(--left-nav-width);
+  overflow-y:auto; 
 }
-
 </style>

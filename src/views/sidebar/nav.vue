@@ -65,8 +65,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~css/varible';
+<style  scoped>
+@import 'varible';
 .nav-list{
   font-size: 16px;
 }
@@ -97,14 +97,14 @@ export default {
   font-size: 14px;
 }
 .active{
-  border-right:5px solid @green;
-  >div{
+  border-right:5px solid var(--color-green);
+  &>div{
     background: linear-gradient(#334556,#2C4257),#2A3F54;
     box-shadow: 0 1px rgba(0,0,0,.2), inset 0 1px rgba(255,255,255,.2);
   }
 }
 .router-link-active{
-  background: @left-nav-active-bg;
+  background: var(--left-nav-active-bg);
 }
 .v-enter-active,.v-leave-active{
   transition: height .3s ease;

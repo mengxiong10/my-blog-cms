@@ -51,7 +51,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .dropdown{
   position: relative;
   display: inline-block;

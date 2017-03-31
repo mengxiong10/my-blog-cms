@@ -48,9 +48,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~css/varible.less';
-@import '~css/mixins.less';
+<style scoped>
+@import 'varible.css';
 .article-section-wrap{
   display: flex;
   height: 100%;
@@ -61,7 +60,7 @@ export default {
   display: flex;
   flex-flow:column;
   min-width: 400px;
-  border-right: 1px solid @border-bg;
+  border-right: var(--border-default);
 }
 .article-right-section{
   flex:2;
@@ -71,7 +70,7 @@ export default {
 .list-controller,.detail-controller{
   flex:none;
   height: 50px;
-  border-bottom: 1px solid @border-bg;
+  border-bottom: var(--border-default);
 }
 .page{
   padding:20px 0;

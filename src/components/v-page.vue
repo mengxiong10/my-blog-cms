@@ -61,8 +61,9 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~css/varible.less';
+<style  scoped>
+@import 'varible.css';
+
 .page-wrap{
   font-size: 0;
   text-align: center;
@@ -81,12 +82,12 @@ button{
   outline: 0;
   cursor: pointer;
   &:hover{
-    color:@blue;
+    color:var(--color-blue);
   }
   &.active{
     color:#fff;
-    border:1px solid @blue;
-    background: @blue;
+    border:1px solid var(--color-blue);
+    background: var(--color-blue);
     cursor: default;
   }
   &[disabled]{

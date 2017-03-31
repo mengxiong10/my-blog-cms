@@ -1,10 +1,10 @@
 <template>
-  <div class="login-wrap">
+  <div>
     <form class="login-content" @submit.prevent="login">
       <h1 class="login-title">后台管理</h1>
       <input type="text" class="form-text" v-model="user.username">
       <input type="password" class="form-text" v-model="user.password">
-      <button class="btn btn-primary">登录</button>
+      <v-button class="login-btn" native-type="submit" type="primary">登录</v-button>
     </form>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .login-content{
   width: 330px;
   margin:200px auto 0;
@@ -59,7 +59,7 @@ export default {
 .form-text{
   margin-bottom: 20px;
 }
-.btn{
+.login-btn{
   float:right;
   width: 100%;
 }

@@ -14,7 +14,7 @@ export default new Router({
   routes: [{
     name: 'login',
     path: '/login',
-    component: Login
+    component: Login,
   }, {
     path: '/cms',
     component: Container,
@@ -37,6 +37,6 @@ export default new Router({
     }],
   }, {
     path: '*',
-    redirect: '/login'
+    redirect: '/login',
   }],
 })

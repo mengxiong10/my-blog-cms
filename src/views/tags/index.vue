@@ -42,8 +42,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~css/varible.less';
+<style scoped>
+@import 'varible.css';
 .tag-list-section{
   padding:10px 20px;
 }
@@ -54,11 +54,11 @@ export default {
 .tag-list{
   padding:1em;
   background: #fff;
-  border:1px solid @border-bg;
+  border:var(--border-default);
   border-radius: 4px;
 }
 .fa-times:hover{
-  color:@red;
+  color:var(--color-red);
 }
 .tag{
   display: inline-block;
@@ -66,7 +66,7 @@ export default {
   text-align: center;
   padding:.2em .5em;
   margin:.5em;
-  border:1px solid @border-bg;
+  border:var(--border-default);
   border-radius: 10px;
   color:#333;
   cursor: pointer;

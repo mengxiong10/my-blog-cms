@@ -63,7 +63,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .controller-wrap{
   padding:12px 20px;
 }

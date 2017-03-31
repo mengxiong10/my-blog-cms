@@ -4,7 +4,7 @@
         v-for="(article,index) in articles"
         :class="{'active':currentArticle._id === article._id}"
         @click="selectArticle(article)">
-      <h4 class="text-overflow">{{article.title}}</h4>
+      <h4 class="u-truncate">{{article.title}}</h4>
       <span>{{article.created_at | date}}</span>
       <span title="访问量">{{article.visit_count}}</span>
       <span>{{article.status ? '已发布' : '草稿'}}</span>
@@ -26,21 +26,21 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~css/varible.less';
+<style scoped>
+@import 'varible.css';
 .list-group-item{
   height: 68px;
   padding:10px 20px;
-  border-bottom:1px solid @border-bg;
+  border-bottom:var(--border-default);
   color:#5A738E;
   &:hover{
-    background: @gray;
+    background: var(--color-gray);
   }
-  span{
+  & span{
     line-height: 2;
     margin-right: 30px;
   }
-  span:last-of-type{
+  & span:last-of-type{
     float: right;
     margin-right: 0;
   }

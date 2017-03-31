@@ -62,8 +62,8 @@ export default {
 </script>
 
 
-<style lang="less" scoped>
-@import '~css/varible.less';
+<style scoped>
+@import 'varible.css';
 .menu{
   min-width: 100px;
   max-width: 200px;
@@ -83,7 +83,7 @@ export default {
     background: #f5f5f5;
   }
   &.disabled{
-    color: @disabled-color;
+    color: var(--disabled-color);
     background: transparent;
     cursor: not-allowed;
   }
@@ -91,7 +91,7 @@ export default {
 .fa-check{
   position: absolute;
   margin-left: -20px;
-  color:@blue;
+  color:var(--color-blue);
   line-height: inherit;
 }
 </style>

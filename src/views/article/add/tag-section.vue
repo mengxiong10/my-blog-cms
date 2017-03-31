@@ -36,7 +36,7 @@ export default {
 </script>
 
 
-<style lang="less" scoped>
+<style scoped>
 .tag-wrap{
   border:1px solid #ccc;
   border-radius:4px;

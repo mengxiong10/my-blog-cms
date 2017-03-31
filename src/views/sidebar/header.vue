@@ -17,7 +17,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style  scoped>
 
 header{
   padding:10px;

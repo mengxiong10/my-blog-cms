@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button type="button" class="btn btn-text" @click="updateArticleStatus">{{statusText}}</button>
+    <v-button type="text" @click.native="updateArticleStatus">{{statusText}}</v-button>
     <i class="fa fa-edit fa-2x fa-pull-right" title="编辑" @click="edit"></i>
     <i class="fa fa-trash-o fa-2x fa-pull-right" title="删除" @click="del"></i>
   </div>
@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style scoped>
 .fa-trash-o{
   margin-right: 12px;
   margin-top:-1px;

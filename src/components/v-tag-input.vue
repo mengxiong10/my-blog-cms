@@ -38,8 +38,7 @@ export default {
 }
 </script>
 
-
-<style lang="less" scoped>
+<style scoped>
 .tags-container{
   padding: 3px;
   background-color: #fff;

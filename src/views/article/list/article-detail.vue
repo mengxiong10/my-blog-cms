@@ -14,8 +14,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~css/varible.less';
+<style  scoped>
 h4{
   text-align: center;
   margin-top:20px;

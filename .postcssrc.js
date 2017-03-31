@@ -1,8 +1,10 @@
 // https://github.com/michael-ciniawsky/postcss-load-config
 
 module.exports = {
-  "plugins": {
-    // to edit target browsers: use "browserlist" field in package.json
-    "autoprefixer": {}
+  'from':'./src/css/index.css',
+  "plugins":{
+    'postcss-import': {},
+    'postcss-short':{},
+    'postcss-cssnext' : {},
   }
 }

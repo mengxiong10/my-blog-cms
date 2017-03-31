@@ -1,0 +1,16 @@
+
+.u-clearfix::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.u-truncate{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+

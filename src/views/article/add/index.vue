@@ -1,10 +1,10 @@
 <template>
   <div class="article-add">
     <h3 class="title">{{isArticleAdd ? '新的文章' : '修改文章'}}</h3>
-    <form class="form-field" @submit.prevent="saveArticle">
+    <form class="form-wrap" @submit.prevent="saveArticle">
       <section class="title-section">
         <label>标题 * </label>
-        <input type="text" class="form-text" v-model="article.title" required>
+        <v-input type="text" v-model="article.title" required></v-input>
       </section>
       <tag-section class="tag-section" :tags="article.tags"></tag-section>
       <section>
@@ -14,10 +14,10 @@
         </div>
       </section>
       <template v-if="isArticleAdd">
-        <button type="submit" class="btn btn-success" @mousedown="changeStatus(1)">发表</button>
-        <button type="submit" class="btn btn-primary" @mousedown="changeStatus(0)">保存为草稿</button>
+        <v-button native-type="submit" type="success" @mousedown.native="changeStatus(1)">发表</v-button>
+        <v-button native-type="submit" type="primary" @mousedown.native="changeStatus(0)">保存为草稿</v-button>
       </template>
-      <button v-else type="submit" class="btn btn-primary">保存</button>
+      <v-button v-else native-type="submit" type="primary">保存</v-button>
     </form>
   </div>
 </template>
@@ -79,8 +79,8 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
-@import '~css/varible.less';
+<style scoped>
+@import 'varible.css';
 .article-add{
   padding:10px 20px;
 }
@@ -88,8 +88,10 @@ export default {
   margin-top: .5em;
   margin-bottom: 1em;
 }
-.form-field{
-  label{
+.form-wrap{
+  padding:1em;
+  border:var(--border-default);
+  & label{
     display:inline-block;
     margin: 5px 0;
     font-weight: 700;
@@ -97,9 +99,6 @@ export default {
       content: ":";
     }
   }
-}
-.btn-primary{
-  margin-left: 10px;
 }
 .title-section{
   display:inline-block;
