@@ -3,6 +3,7 @@
     <h1>博客后台管理</h1>
     <img class="profile-pic" src="../../image/admin.jpg" height="180" width="180" alt="avatar">
     <span class="profile-info">admin</span>
+    <div class="test"></div>
   </header>
 </template>
 
@@ -36,4 +37,5 @@ h1{
   background: #fff;
   border-radius: 50%;
 }
+
 </style>

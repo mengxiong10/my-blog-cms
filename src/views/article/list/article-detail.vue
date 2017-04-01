@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<style  scoped>
+<style scoped>
 h4{
   text-align: center;
   margin-top:20px;
@@ -24,6 +24,5 @@ h4{
   margin: 0 auto;
   padding:20px;
 }
-
 </style>
 

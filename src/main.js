@@ -15,9 +15,8 @@ Vue.component('v-tag-input', require('components/v-tag-input.vue'))
 Vue.component('v-page', require('components/v-page.vue'))
 Vue.component('v-dialog', require('components/v-dialog.vue'))
 
-/* eslint-disable */
 
-new Vue({
+new Vue({ // eslint-disable-line
   el: '#app',
   router,
   store,

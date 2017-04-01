@@ -46,6 +46,7 @@
     "opn": "^4.0.2",
     "ora": "^1.1.0",
     "postcss": "^5.2.16",
+    "postcss-css-reset": "^1.0.2",
     "postcss-cssnext": "^2.9.0",
     "postcss-import": "^9.1.0",
     "postcss-loader": "^1.3.3",

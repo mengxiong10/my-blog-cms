@@ -69,6 +69,14 @@ export default {
 @import 'varible.css';
 .nav-list{
   font-size: 16px;
+  color:#fff;
+  & a{
+    color:inherit;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
 }
 .fa-angle-down{
   float: right;

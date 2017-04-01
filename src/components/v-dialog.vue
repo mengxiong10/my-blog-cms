@@ -4,7 +4,7 @@
       <div class="dialog">
         <div class="dialog-header">
           <span class="dialog-title">{{title}}</span>
-          <i @click="cancel" class="fa fa-close fa-pull-right fa-lg"></i>
+          <i @click="cancel" class="fa fa-close u-pull-right u-pointer fa-lg"></i>
         </div>
         <div class="dialog-body">
           <slot></slot>
@@ -107,7 +107,6 @@
 }
 .fa-close{
   color: var(--color-gray);
-  cursor: pointer;
   &:hover{
     color:var(--color-blue);
   }

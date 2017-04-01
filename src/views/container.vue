@@ -28,10 +28,6 @@ export default {
 
 <style scoped>
 @import 'varible.css';
-#app{
-  color:var(--color-slategrey);
-  background-color:#f7f7f7;
-}
 .sidebar-section{
   position: absolute 0 * 0 0;
   width:var(--left-nav-width);  

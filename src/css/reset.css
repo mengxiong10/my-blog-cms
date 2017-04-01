@@ -1,38 +1,5 @@
-body, blockquote, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul {
-  margin: 0;
-  padding: 0
-}
 
-ol, ul {
-  list-style: none
-}
-a {
-  color: inherit;
-  text-decoration: none;
-  background-color: transparent;
-}
-a:hover{
-  text-decoration: underline;
-}
-sup {
-  vertical-align: text-top
-}
-sub {
-  vertical-align: text-bottom
-}
-legend {
-  color: #000
-}
-fieldset, img {
-  border: 0
-}
-button, input, select, textarea {
-  font-size: 100%
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0
-}
+@reset-global pc;
 
 html{
   box-sizing: border-box;
@@ -46,8 +13,8 @@ html{
 
 body {
   font: 14px/1.5 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei",sans-serif;
-  color: #333;
-  background-color: #fff;
+  color:var(--color-slategrey);
+  background-color:#f7f7f7;
 }
 
 h1{

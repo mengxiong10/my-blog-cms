@@ -1,10 +1,11 @@
 // https://github.com/michael-ciniawsky/postcss-load-config
-const path = require('path')
 
 module.exports = {
-  'from':path.resolve(__dirname,'src/css/'),
-  "plugins":{
-    'postcss-import': {},
+  'plugins':{
+    'postcss-import': {
+      'path':'./src/css'
+    },
+    'postcss-css-reset':{},
     'postcss-short':{},
     'postcss-cssnext' : {},
   }

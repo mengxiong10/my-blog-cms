@@ -91,7 +91,7 @@ button{
     cursor: default;
   }
   &[disabled]{
-    color:#e4e4e4;
+    color:var(--disabled-color);
     cursor: not-allowed;
   }
 }
