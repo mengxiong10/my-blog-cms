@@ -20,6 +20,8 @@ new Vue({ // eslint-disable-line
   el: '#app',
   router,
   store,
-  template: '<router-view></router-view>',
+  render(h) {
+    return h('router-view')
+  },
 })
 
