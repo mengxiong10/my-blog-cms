@@ -14,6 +14,11 @@ export function merge(target) {
   return target
 }
 
+
+export function isPlainObject(obj){
+  return Object.prototype.toString.call(obj) === '[object Object]'
+}
+
 export function formatDate (d,fmt) {
   var date = d instanceof Date ? d : new Date(d)
   var o = {

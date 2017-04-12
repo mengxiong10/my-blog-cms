@@ -7,6 +7,8 @@ import './server/mock.js'
 
 import './css/index.css'
 
+import './directives/loading/index.js'
+
 /* 自定义全局组件*/
 Vue.component('v-button', require('components/v-button.vue'))
 Vue.component('v-dropdown', require('components/v-dropdown.vue'))
@@ -14,6 +16,7 @@ Vue.component('v-dropmenu', require('components/v-dropmenu.vue'))
 Vue.component('v-tag-input', require('components/v-tag-input.vue'))
 Vue.component('v-page', require('components/v-page.vue'))
 Vue.component('v-dialog', require('components/v-dialog.vue'))
+
 
 
 new Vue({ // eslint-disable-line

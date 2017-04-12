@@ -1,15 +1,17 @@
 import axios from 'axios'
 import router from '../router.js'
 
-axios.defaults.baseURL = 'http://localhost:9000'
-axios.defaults.withCredentials = true
-
-axios.interceptors.response.use(undefined, (err) => {
+const preResData = undefined
+const preResError = (err) => {
   if (err.response.status === 401) {
     router.push('/login')
   }
   return Promise.reject(err)
-})
+}
+// 全局响应拦截器
+axios.interceptors.response.use(preResData, preResError)
+axios.defaults.baseURL = 'http://localhost:9000'
+axios.defaults.withCredentials = true // cors cookie
 
 export default {
   login(user) {

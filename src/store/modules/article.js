@@ -40,11 +40,11 @@ export default {
       })
     },
     delCurrentArticle({ state, commit, dispatch }) {
-        const id = state.currentArticle._id
-        return api.delArticle(id).then(() => {
-          commit('DELETE_ARTICLE')
-          dispatch('getArticleList')
-        })
+      const id = state.currentArticle._id
+      return api.delArticle(id).then(() => {
+        commit('DELETE_ARTICLE')
+        dispatch('getArticleList')
+      })
     },
     // 选中当前文章
     selectArticle({ state, commit }, article) {

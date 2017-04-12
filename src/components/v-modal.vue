@@ -18,7 +18,7 @@ import {merge} from 'src/server/utils'
 import VDialog from './v-dialog.vue'
 
 let $root = null
-let defaultOptions = {
+const defaultOptions = {
   show: false,
   title: '提示',
   content: '',
@@ -37,7 +37,7 @@ export default {
     return {
       modal:JSON.parse(JSON.stringify(defaultOptions)),
       errorMsg:'内容不能为空',
-      dirty:false,//开始检测是否为空
+      dirty:false,// 开始检测是否为空
       text:'',
     }
   },
@@ -91,7 +91,7 @@ export default {
           if (typeof content === 'object') {
             options = content
           }
-          $root.text = options.text || text || '' //默认值
+          $root.text = options.text || text || '' // 默认值
           merge(options,{type:'prompt'})          
           return createdModal(options)
         }
