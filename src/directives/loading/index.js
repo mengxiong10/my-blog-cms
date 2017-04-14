@@ -4,12 +4,10 @@ const Loading = Vue.extend(require('./loading.vue'))
 
 Vue.directive('loading', {
   bind(el, binding) {
-    const scale = +el.getAttribute('scale') // 缩放比例
     el.instance = new Loading({
       el: document.createElement('div'),
       data: {
         visible: !!binding.value,
-        scale: scale || 1,
       },
     })
     Vue.nextTick(() => {

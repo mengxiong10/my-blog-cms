@@ -18,7 +18,6 @@ Vue.component('v-page', require('components/v-page.vue'))
 Vue.component('v-dialog', require('components/v-dialog.vue'))
 
 
-
 new Vue({ // eslint-disable-line
   el: '#app',
   router,

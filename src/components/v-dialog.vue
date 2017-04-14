@@ -1,6 +1,6 @@
 <template>
-  <transition name="shade">
-    <div class="shade" v-show="value">
+  <transition name="mask">
+    <div class="u-mask" v-show="value">
       <div class="dialog">
         <div class="dialog-header">
           <span class="dialog-title">{{title}}</span>
@@ -55,22 +55,13 @@
 
 <style scoped>
 @import 'varible.css';
-.shade{
-  position: fixed;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0,0,0,.5);
-  z-index: 100;
-}
-.shade-enter-active,.shade-leave-active{
+.mask-enter-active,.mask-leave-active{
   transition:opacity .3s;
   &>.dialog{
     transition:transform .3s;
   }
 }
-.shade-enter,.shade-leave-to{
+.mask-enter,.mask-leave-to{
   opacity:0;
   &>.dialog{
     transform:translate(-50%,-50px);

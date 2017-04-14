@@ -19,9 +19,9 @@ export function isPlainObject(obj){
   return Object.prototype.toString.call(obj) === '[object Object]'
 }
 
-export function formatDate (d,fmt) {
-  var date = d instanceof Date ? d : new Date(d)
-  var o = {
+export function formatDate (date,fmt) {
+  date = date instanceof Date ? date : new Date(date)
+  const map = {
       "M+": date.getMonth() + 1, //月份
       "[Dd]+": date.getDate(), //日
       "[Hh]+": date.getHours(), //小时
@@ -29,10 +29,16 @@ export function formatDate (d,fmt) {
       "s+": date.getSeconds(), //秒
       "q+": Math.floor((date.getMonth() + 3) / 3), //季度
       "S": date.getMilliseconds() //毫秒
-  };
-  if (/([Yy]+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + "").substr(4 - RegExp.$1.length));
-  for (var k in o)
-  if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+  }
+  fmt = fmt.replace(/[Yy]+/g, function(str) {
+    return ('' +　date.getFullYear()).slice(4 - str.length)
+  })
+  Object.keys(map).forEach((key) => {
+    fmt = fmt.replace(new RegExp(key),function(str) {
+      const value = '' + map[key]
+      return str.length === 1 ? value : ('00' + value).slice(value.length)
+    })
+  })
   return fmt;
 }
 

@@ -12,6 +12,9 @@ Vue.use(Router)
 
 export default new Router({
   routes: [{
+    path: '/test',
+    component: require('./components/v-dt.vue'),
+  }, {
     name: 'login',
     path: '/login',
     component: Login,
