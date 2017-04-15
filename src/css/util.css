@@ -1,36 +1,34 @@
-
-.u-clearfix::after{
+.u-clearfix::after {
   content: '';
   display: block;
   clear: both;
 }
 
-.u-truncate{
+.u-truncate {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.u-pull-left{
-  float:left;
+.u-pull-left {
+  float: left;
 }
 
-.u-pull-right{
-  float:right;
+.u-pull-right {
+  float: right;
 }
 
-.u-pointer{
-  cursor: pointer
+.u-pointer {
+  cursor: pointer;
 }
 
-.u-mask{
+.u-mask {
   position: fixed;
-  top:0;
+  top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 100;
 }
-
 
