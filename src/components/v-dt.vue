@@ -1,9 +1,15 @@
 <template>
-  <div class="date-picker"
+  <div class="v-datepicker"
        @focus="activate()"
        @blur="deactivate()">
-    <input readonly>
-    <div class="date-picker-popup">
+    <input readonly :value="text">
+    <div class="v-datepicker-popup">
+      <div class="v-datepicker-header">
+        <button type="button">&laquo;</button>
+        <button type="button">&lsaquo;</button>
+        <button type="button">&rsaquo;</button>
+        <button type="button">&raquo;</button>
+      </div>
       <table>
         <thead>
           <tr>
@@ -12,7 +18,10 @@
         </thead>
         <tbody>
           <tr v-for="row in date1">
-            <td v-for="cell in row" :class="getClasses(cell)">{{cell.day}}</td>
+            <td v-for="cell in row"
+                :title="cell.date"            
+                :class="getClasses(cell)"
+                @click="selectDate(cell)">{{cell.day}}</td>
           </tr>
         </tbody>
       </table>
@@ -29,12 +38,18 @@ export default {
       type: String,
       default: 'yyyy-MM-dd',
     },
+    value: null,
   },
   data() {
     return {
       days: ['日', '一', '二', '三', '四', '五', '六'],
       date1: [],
     }
+  },
+  computed: {
+    text() {
+      return this.isValidDate(this.value) ? this.stringify(this.value) : ''
+    },
   },
   created() {
     this.update(new Date())
@@ -43,10 +58,14 @@ export default {
     stringify(date) {
       return formatDate(date, this.format)
     },
-    getMonth(time, firstday, length, type) {
+    isValidDate(date) {
+      return !!new Date(date).getTime()
+    },
+    getMonth(time, firstday, length, classes) {
       const today = new Date().setHours(0, 0, 0, 0)
       return Array.apply(null, { length }).map((v, i) => { // eslint-disable-line
         let day = firstday + i
+        let type = classes
         const date = new Date(time.getFullYear(), time.getMonth(), day)
         const isToday = today === date.getTime()
         if (isToday) {
@@ -64,15 +83,17 @@ export default {
     update(time) {
       const row = 6
       const col = 7
-      time.setMonth(time.getMonth() + 1, 0) // 切换到这个月最后一天
-      const curMonthLength = time.getDate()
-      const curMonth = this.getMonth(time, 1, curMonthLength, 'curMonth')
 
       time.setDate(0) // 把时间切换到上个月最后一天
       const lastMonthLength = time.getDay() + 1  // time.getDay() 0是星期天, 1是星期一 ...
       const lastMonthfirst = time.getDate() - (lastMonthLength - 1)
       const lastMonth = this.getMonth(time, lastMonthfirst, lastMonthLength, 'lastMonth')
 
+      time.setMonth(time.getMonth() + 2, 0) // 切换到这个月最后一天
+      const curMonthLength = time.getDate()
+      const curMonth = this.getMonth(time, 1, curMonthLength, 'curMonth')
+
+      time.setMonth(time.getMonth() + 1)
       const nextMonthLength = (row * col) - (lastMonthLength + curMonthLength)
       const nextMonth = this.getMonth(time, 1, nextMonthLength, 'nextMonth')
 
@@ -87,15 +108,13 @@ export default {
       this.date1 = result
     },
     getClasses(cell) {
-      const today = this.stringify(new Date())
       const classes = []
-      if (cell.date === today) {
-        cell.type = 'today'
-        cell.day = '今天'
-      }
       classes.push(cell.type)
 
       return classes.join(' ')
+    },
+    selectDate(cell) {
+
     },
     // activate() {
     //   if (this.show) return
@@ -124,15 +143,16 @@ export default {
 
 
 <style scoped>
-.date-picker {
+
+.v-datepicker {
   display: inline-block;
-  color: #6d6d6d;
+  color: #48576a;
   background-color: #fff;
   margin: 20px 600px;
 }
 
-.date-picker-popup {
-  font: 12px/1 'MicroYahei', serif;
+.v-datepicker-popup {
+  font-size: 12px / 1;
   & td,
   & th {
     width: 30px;
@@ -141,12 +161,29 @@ export default {
   }
   & td {
     cursor: pointer;
-    &:hover{
+    &:hover {
       background-color: #eaf8fe;
     }
   }
 }
-.lastMonth,.nextMonth{
+
+.lastMonth,
+.nextMonth {
   color: #ccc;
 }
+
+.today {
+  color: #20a0ff;
+}
+
+.v-datepicker-header {
+  &>button {
+    background: transparent;
+    border: 0;
+    outline: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+
 </style>
