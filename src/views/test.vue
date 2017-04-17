@@ -3,13 +3,13 @@
 </template>
 
 <script>
-import VDate from 'components/v-dt.vue'
+import VDate from 'components/datepicker/index.vue'
 
 export default {
   components: { VDate },
   data() {
     return {
-      date: '2017-4-20',
+      date: '',
     }
   },
 }
