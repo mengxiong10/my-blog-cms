@@ -8,8 +8,8 @@
       <i class="v-calendar__next-icon" @click="changeYear(1)">&raquo;</i>
       <i class="v-calendar__next-icon" @click="changeMonth(1)" >&rsaquo;</i>   
     </div>
-    <div class="v-calendar-table">
-      <table>
+    <div class="v-calendar-content">
+      <table class="v-calendar-table">
         <thead>
           <tr>
             <th v-for="day in days">{{day}}</th>
@@ -202,9 +202,13 @@ export default {
 .v-calendar__next-icon {
   float: right;
 }
-
+.v-calendar-content{
+  width:210px;
+}
 .v-calendar-table {
-  font-size: 12px / 1;
+  width: 100%;
+  table-layout: fixed;
+  font-size: 12px;
   & td,
   & th {
     width: 30px;

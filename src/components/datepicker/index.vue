@@ -111,10 +111,10 @@ export default {
 .v-datepicker {
   display: inline-block;
   color: #48576a;
-  margin: 20px 600px;
+  margin: 20px;
 }
 .v-datepicker-popup {
-   border: 1px solid #d9d9d9;
+  border: 1px solid #d9d9d9;
   background-color: #fff;
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }

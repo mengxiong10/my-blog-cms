@@ -21,7 +21,7 @@ import HeaderView from './header'
 import VModal from '../components/v-modal.vue'
 
 export default {
-  name: 'container',  
+  name: 'container',
   components: { SidebarHeader, SidebarNav, HeaderView, VModal },
 }
 </script>
