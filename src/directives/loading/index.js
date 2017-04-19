@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 const Loading = Vue.extend(require('./loading.vue'))
 
-Vue.directive('loading', {
+export default {
   bind(el, binding) {
     el.instance = new Loading({
       el: document.createElement('div'),
@@ -26,5 +26,4 @@ Vue.directive('loading', {
   unbind(el) {
     el.removeChild(el.instance.$el)
   },
-})
-
+}

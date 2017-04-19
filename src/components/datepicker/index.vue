@@ -1,15 +1,23 @@
 <template>
   <div class="v-datepicker"
-       @focus="activate()"
-       @blur="deactivate()">
-    <input readonly :value="text" @click="show = !show">
-    <div class="v-datepicker-popup" v-show="show">
+       :style="{'width': width + 'px'}"
+       v-clickoutside="closePopup">   
+    <input readonly
+          class="v-input"
+          :value="text"
+          :placeholder="innerPlaceholder"
+          ref="input"
+          @click="togglePopup"
+          @mousedown="$event.preventDefault()">
+    <div class="v-datepicker-popup"
+         :class="{'v-range':range}"
+         v-show="show">
       <template v-if="!range">
         <v-calendar v-model="currentValue" :show="show"></v-calendar>
       </template>
       <template v-else>
-        <v-calendar v-model="currentValue[0]" :show="show" :range="true" :end-at="currentValue[1]"></v-calendar>
-        <v-calendar v-model="currentValue[1]" :show="show" :range="true" :start-at="currentValue[0]"></v-calendar>
+        <v-calendar style="width:50%"  v-model="currentValue[0]" :show="show" :range="true" :end-at="currentValue[1]"></v-calendar>
+        <v-calendar style="width:50%"  v-model="currentValue[1]" :show="show" :range="true" :start-at="currentValue[0]"></v-calendar>
       </template>
     </div>
   </div>
@@ -30,11 +38,17 @@ export default {
       type: Boolean,
       default: true,
     },
+    width: {
+      type: [String, Number],
+      default: 210,
+    },
+    palceholder: String,
     value: null,
   },
   data() {
     return {
       show: true,
+      innerPlaceholder: this.placeholder ? this.placeholder : (this.range ? '请选择日期范围' : '请选择日期'),
       currentValue: null,
     }
   },
@@ -68,6 +82,18 @@ export default {
     },
   },
   methods: {
+    closePopup() {
+      this.show = false
+    },
+    togglePopup() {
+      if (this.show) {
+        this.$refs.input.blur()
+        this.show = false
+      } else {
+        this.$refs.input.focus()
+        this.show = true
+      }
+    },
     stringify(date) {
       return formatDate(date, this.format)
     },
@@ -80,43 +106,42 @@ export default {
         this.isValidDate(date[0]) &&
         this.isValidDate(date[1])
     },
-    // activate() {
-    //   if (this.show) return
-    //   this.show = true
-    //   if (this.searchable) {
-    //     this.search = ''
-    //     this.$els.search.focus()
-    //   } else {
-    //     this.$el.focus()
-    //   }
-    //   this.$emit('open')
-    // },
-    // deactivate() {
-    //   if (!this.show) return
-    //   this.show = false
-    //   if (this.searchable) {
-    //     this.$els.search.blur()
-    //     this.search = ''
-    //   } else {
-    //     this.$el.blur()
-    //   }
-    // },
   },
 }
 </script>
 
 
 <style scoped>
-
 .v-datepicker {
+  position: relative;
   display: inline-block;
   color: #48576a;
+  width: 220px;
   margin: 20px;
 }
 .v-datepicker-popup {
+  position: absolute;
+  min-width: 234px;
+  margin-top:1px;
   border: 1px solid #d9d9d9;
   background-color: #fff;
   box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
-
+.v-range{
+  min-width: 468px;
+}
+.v-input{
+  display: inline-block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px/1.4;
+  color: #555 #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  &:focus{
+    border-color:#20a0ff;
+  }
+}
 </style>

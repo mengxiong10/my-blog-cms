@@ -135,7 +135,7 @@ export default {
         if ((this.startAt && cellTime < this.startAt.getTime()) ||
           (this.endAt && cellTime > this.endAt.getTime())) {
           classes.push('disabled')
-        } else if (curTime) {
+        } else if (curTime > 0) {
           if ((this.startAt &&
              cellTime >= this.startAt.getTime() &&
              cellTime <= curTime)
@@ -179,7 +179,7 @@ export default {
 
 <style scoped>
 .v-calendar{
-  display: inline-block;
+  float: left;
   padding: 12px;
   &:nth-child(2) {
     border-left:1px solid #e4e4e4;
@@ -203,7 +203,7 @@ export default {
   float: right;
 }
 .v-calendar-content{
-  width:210px;
+  /*width:210px;*/
 }
 .v-calendar-table {
   width: 100%;
