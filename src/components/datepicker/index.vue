@@ -1,6 +1,6 @@
 <template>
   <div class="v-datepicker"
-       :style="{'width': width + 'px'}"
+       :style="{'width': width + 'px','min-width':range ? '210px' : '140px'}"
        v-clickoutside="closePopup">   
     <input readonly
           class="v-input"
@@ -9,6 +9,7 @@
           ref="input"
           @click="togglePopup"
           @mousedown="$event.preventDefault()">
+    <i class="fa fa-calendar"></i>
     <div class="v-datepicker-popup"
          :class="{'v-range':range}"
          v-show="show">
@@ -36,7 +37,7 @@ export default {
     },
     range: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     width: {
       type: [String, Number],
@@ -48,6 +49,7 @@ export default {
   data() {
     return {
       show: true,
+      icon: 'fa-calendar',
       innerPlaceholder: this.placeholder ? this.placeholder : (this.range ? '请选择日期范围' : '请选择日期'),
       currentValue: null,
     }
@@ -116,7 +118,6 @@ export default {
   position: relative;
   display: inline-block;
   color: #48576a;
-  width: 220px;
   margin: 20px;
 }
 .v-datepicker-popup {
@@ -134,7 +135,7 @@ export default {
   display: inline-block;
   width: 100%;
   height: 34px;
-  padding: 6px 12px;
+  padding: 6px 26px 6px 10px;
   font-size: 14px/1.4;
   color: #555 #fff;
   border: 1px solid #ccc;
@@ -143,5 +144,11 @@ export default {
   &:focus{
     border-color:#20a0ff;
   }
+}
+.fa-calendar{
+  position: absolute 0 10px * *;
+  font-size:18px;
+  height: 100%;
+  color:#888;
 }
 </style>

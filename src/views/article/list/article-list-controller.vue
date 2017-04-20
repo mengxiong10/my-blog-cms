@@ -5,12 +5,12 @@
       <!--<span>状态</span>-->
       <v-dropmenu slot="dropdown" :options="statusOptions" v-model="status"></v-dropmenu>
     </v-dropdown>
-    <v-dropdown class="pull-right">
+    <v-dropdown class="u-pull-right">
       <span>排序</span>
       <v-dropmenu slot="dropdown" :options="sortOptions" v-model="sort"></v-dropmenu>
       <v-dropmenu slot="dropdown" :options="orderOptions" v-model="order"></v-dropmenu>
     </v-dropdown>
-    <v-dropdown class="tag-controller pull-right" :hide-on-click="true">
+    <v-dropdown class="tag-controller u-pull-right" :hide-on-click="true">
       <span>标签</span>
       <v-dropmenu slot="dropdown" :options="[{name:'全部',_id:''}]" option-key="_id" v-model="tag"></v-dropmenu>
       <v-dropmenu slot="dropdown" :options="tagOptions" option-key="_id" v-model="tag"></v-dropmenu>
