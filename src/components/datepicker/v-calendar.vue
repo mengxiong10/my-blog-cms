@@ -37,14 +37,6 @@ export default {
     endAt: null,
     value: null,
     show: Boolean,
-    range: {
-      type: Boolean,
-      default: false,
-    },
-    format: {
-      type: String,
-      default: 'yyyy-MM-dd',
-    },
   },
   data() {
     return {
@@ -54,10 +46,7 @@ export default {
     }
   },
   created() {
-    this.update(new Date())
-  },
-  computed: {
-
+    this.update()
   },
   watch: {
     show(val) {
@@ -65,18 +54,13 @@ export default {
         this.now = this.value ? new Date(this.value) : new Date()
       }
     },
-    now(val) {
-      this.update(val)
+    value(val) {
+      this.now = val ? new Date(val) : new Date()
     },
+    now: 'update',
   },
   methods: {
-    stringify(date) {
-      return formatDate(date, this.format)
-    },
-    isValidDate(date) {
-      return !!new Date(date).getTime()
-    },
-    getMonth(time, firstday, length, classes) {
+    getCalendar(time, firstday, length, classes) {
       const today = new Date().setHours(0, 0, 0, 0)
       return Array.apply(null, { length }).map((v, i) => { // eslint-disable-line
         let day = firstday + i
@@ -88,7 +72,7 @@ export default {
           type += ' today'
         }
         return {
-          title: this.stringify(date),
+          title: formatDate(date, 'yyyy-MM-dd'),
           date,
           day,
           type,
@@ -96,23 +80,23 @@ export default {
       })
     },
     // 更新面板选择时间
-    update(now) {
+    update() {
       const row = 6
       const col = 7
-      const time = new Date(now)
+      const time = new Date(this.now)
 
       time.setDate(0) // 把时间切换到上个月最后一天
       const lastMonthLength = time.getDay() + 1  // time.getDay() 0是星期天, 1是星期一 ...
       const lastMonthfirst = time.getDate() - (lastMonthLength - 1)
-      const lastMonth = this.getMonth(time, lastMonthfirst, lastMonthLength, 'lastMonth')
+      const lastMonth = this.getCalendar(time, lastMonthfirst, lastMonthLength, 'lastMonth')
 
       time.setMonth(time.getMonth() + 2, 0) // 切换到这个月最后一天
       const curMonthLength = time.getDate()
-      const curMonth = this.getMonth(time, 1, curMonthLength, 'curMonth')
+      const curMonth = this.getCalendar(time, 1, curMonthLength, 'curMonth')
 
       time.setMonth(time.getMonth() + 1, 1)
       const nextMonthLength = (row * col) - (lastMonthLength + curMonthLength)
-      const nextMonth = this.getMonth(time, 1, nextMonthLength, 'nextMonth')
+      const nextMonth = this.getCalendar(time, 1, nextMonthLength, 'nextMonth')
 
       // 分割数组
       let index = 0
@@ -126,25 +110,22 @@ export default {
     },
     getClasses(cell) {
       const classes = []
-      const currentDate = new Date(this.value)
-      currentDate.setHours(0, 0, 0, 0)
       const cellTime = cell.date.getTime()
-      const curTime = currentDate.getTime()
+      const curTime = this.value ? new Date(this.value).setHours(0, 0, 0, 0) : 0
+      const startTime = this.startAt ? this.startAt.setHours(0, 0, 0, 0) : 0
+      const endTime = this.endAt ? this.endAt.setHours(0, 0, 0, 0) : 0
       classes.push(cell.type)
-      if (this.range) {
-        if ((this.startAt && cellTime < this.startAt.getTime()) ||
-          (this.endAt && cellTime > this.endAt.getTime())) {
+      if (startTime) {
+        if (cellTime < startTime) {
           classes.push('disabled')
-        } else if (curTime > 0) {
-          if ((this.startAt &&
-             cellTime >= this.startAt.getTime() &&
-             cellTime <= curTime)
-             ||
-             (this.endAt &&
-              cellTime <= this.endAt.getTime() &&
-              cellTime >= curTime)) {
-            classes.push('inrange')
-          }
+        } else if (curTime && cellTime <= curTime) {
+          classes.push('inrange')
+        }
+      } else if (endTime) {
+        if (cellTime > endTime) {
+          classes.push('disabled')
+        } else if (curTime && cellTime >= curTime) {
+          classes.push('inrange')
         }
       }
       if (curTime === cellTime) {
@@ -180,7 +161,7 @@ export default {
 <style scoped>
 .v-calendar{
   float: left;
-  padding: 12px;
+  padding: 6px 12px;
   &:nth-child(2) {
     border-left:1px solid #e4e4e4;
   }
@@ -191,19 +172,19 @@ export default {
   text-align: center;
 }
 .v-calendar__prev-icon, .v-calendar__next-icon{
-    font-style: normal;
-    font-size: 20px;
-    padding:0 6px;
-    cursor: pointer;
+  font-style: normal;
+  font-size: 20px;
+  padding:0 6px;
+  cursor: pointer;
+  &:hover{
+    color:#1284e7;
+  }
 }
 .v-calendar__prev-icon {
   float: left;
 }
 .v-calendar__next-icon {
   float: right;
-}
-.v-calendar-content{
-  /*width:210px;*/
 }
 .v-calendar-table {
   width: 100%;

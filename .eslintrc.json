@@ -27,6 +27,7 @@
     "no-underscore-dangle":["error", { "allow": ["_id"]}],
     "no-bitwise":"off",
     "no-plusplus":"off",
-    "prefer-template":"off"
+    "prefer-template":"off",
+    "no-mixed-operators":"off"
   }
 }
