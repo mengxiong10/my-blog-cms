@@ -15,6 +15,7 @@
 
 <script>
 export default {
+  name: 'VDropdown',
   props: {
     // 选择菜单选项后关闭
     hideOnClick: {

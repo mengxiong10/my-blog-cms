@@ -25,9 +25,10 @@
 
 <script>
   export default {
+    name: 'VDialog',
     props: {
       title: String,
-      //显示dialog 
+      // 显示dialog
       value: {
         type: Boolean,
         default: false,

@@ -8,6 +8,7 @@
 
 <script>
 export default {
+  name: 'VButton',
   props: {
     nativeType: {
       default: 'button',

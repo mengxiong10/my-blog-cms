@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  name: 'VDropmenu',
   props: {
     value: null,
     options: Array,

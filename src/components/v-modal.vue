@@ -1,9 +1,5 @@
 <template>
-  <v-dialog v-model="modal.show"
-            :title="modal.title"
-            :showCancelButton="modal.type !=='alert'"
-            @confirm="confirm"
-            @cancel="cancel">
+  <v-dialog v-model="modal.show" :title="modal.title" :showCancelButton="modal.type !=='alert'" @confirm="confirm" @cancel="cancel">
     <div class="modal-content">{{modal.content}}</div>
     <template v-if="modal.type === 'prompt'">
       <input class="form-text" :class="{'invalid':invalid}" type="text" v-model="text" @change.once="dirty = true">
@@ -14,7 +10,7 @@
 
 <script>
 import Vue from 'vue'
-import {merge} from 'src/server/utils'
+import { merge } from 'src/server/utils'
 import VDialog from './v-dialog.vue'
 
 let $root = null
@@ -32,92 +28,96 @@ const createdModal = function (options) {
 
 
 export default {
-  components:{VDialog},
+  name: 'VModal',
+  components: { VDialog },
   data() {
     return {
-      modal:JSON.parse(JSON.stringify(defaultOptions)),
-      errorMsg:'内容不能为空',
-      dirty:false,// 开始检测是否为空
-      text:'',
+      modal: JSON.parse(JSON.stringify(defaultOptions)),
+      errorMsg: '内容不能为空',
+      dirty: false,// 开始检测是否为空
+      text: '',
     }
   },
-  computed:{
+  computed: {
     invalid() {
       return this.text === '' && this.dirty
-    }
+    },
   },
-  watch:{
+  watch: {
     'modal.show'(val) {
       if (!val) {
-        this.dirty = false 
-        this.text = '' 
+        this.dirty = false
+        this.text = ''
       }
-    }
+    },
   },
-  methods:{
+  methods: {
     confirm() {
-      this.dirty = true 
+      this.dirty = true
       if (this.modal.type === 'prompt' && this.invalid) {
-        return 
+        return
       }
       $root.modal.resolve(this.text)
       $root.modal.show = false
     },
     cancel() {
       $root.modal.reject()
-      $root.modal.show = false 
+      $root.modal.show = false
     },
     setRoot(vm) {
       $root = vm
       Vue.prototype.$modal = {
         confirm(content, title) {
-          let options = {content,title}
+          let options = { content, title }
           if (typeof content === 'object') {
             options = content
           }
-          merge(options,{type:'confirm'})          
+          merge(options, { type: 'confirm' })
           return createdModal(options)
         },
-        alert(content , title) {
-          let options = {content,title}
+        alert(content, title) {
+          let options = { content, title }
           if (typeof content === 'object') {
             options = content
           }
-          merge(options,{type:'alert'})          
-          return createdModal(options).catch(() => {})
+          merge(options, { type: 'alert' })
+          return createdModal(options).catch(() => { })
         },
-        prompt(content,title,text ) {
-          let options = {content,title}
+        prompt(content, title, text) {
+          let options = { content, title }
           if (typeof content === 'object') {
             options = content
           }
           $root.text = options.text || text || '' // 默认值
-          merge(options,{type:'prompt'})          
+          merge(options, { type: 'prompt' })
           return createdModal(options)
-        }
+        },
       }
-    }
+    },
   },
   created() {
     this.setRoot(this)
-  }
+  },
 }
 </script>
 
 <style scoped>
-.modal-content{
+.modal-content {
   margin-top: 10px;
 }
-.form-text{
+
+.form-text {
   margin-top: 20px;
 }
-.invalid{
-  border-color:red;
+
+.invalid {
+  border-color: red;
   outline: none;
 }
-.error-msg{
+
+.error-msg {
   font-size: 12px;
-  color:red;
+  color: red;
   padding-top: 2px;
 }
 </style>

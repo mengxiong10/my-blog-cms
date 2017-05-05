@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name: 'VPage',
   props: {
     total: {
       type: Number,

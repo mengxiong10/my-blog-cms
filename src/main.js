@@ -7,13 +7,6 @@ import { formatDate } from './server/utils'
 import loading from './directives/loading/index'
 import clickoutside from './directives/clickoutside'
 
-import VButton from './components/v-button.vue'
-import VDropdown from './components/v-dropdown.vue'
-import VDropmenu from './components/v-dropmenu.vue'
-import VTagInput from './components/v-tag-input.vue'
-import VPage from './components/v-page.vue'
-import VDialog from './components/v-dialog.vue'
-
 import './css/index.css'
 import './server/mock.js'
 
@@ -25,10 +18,8 @@ Vue.directive('loading', loading)
 Vue.directive('clickoutside', clickoutside)
 
 /* 自定义全局组件*/
-const components = { VButton, VDropdown, VDropmenu, VTagInput, VPage, VDialog }
-Object.keys(components).forEach((name) => {
-  Vue.component(name, components[name])
-})
+const components = require.context('./components', false, /\.vue$/)
+components.keys().forEach(key => Vue.component(components(key).name, components(key)))
 
 new Vue({ // eslint-disable-line
   el: '#app',

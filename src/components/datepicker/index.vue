@@ -18,14 +18,14 @@
          :class="{'v-range':range}"
          v-show="showPopup">
       <template v-if="!range">
-        <v-calendar v-model="currentValue" :show="showPopup"></v-calendar>
+        <calendar-panel v-model="currentValue" :show="showPopup"></calendar-panel>
       </template>
       <template v-else>
         <div class="v-datepicker-top">
           <a v-for="range in ranges" @click="selectRange(range)">{{range.text}}</a>
         </div>
-        <v-calendar style="width:50%"  v-model="currentValue[0]" :end-at="currentValue[1]" :show="showPopup"></v-calendar>
-        <v-calendar style="width:50%"  v-model="currentValue[1]" :start-at="currentValue[0]" :show="showPopup"></v-calendar>
+        <calendar-panel style="width:50%"  v-model="currentValue[0]" :end-at="currentValue[1]" :show="showPopup"></calendar-panel>
+        <calendar-panel style="width:50%"  v-model="currentValue[1]" :start-at="currentValue[0]" :show="showPopup"></calendar-panel>
       </template>
     </div>
   </div>
@@ -33,10 +33,10 @@
 
 <script>
 import { formatDate } from 'src/server/utils.js'
-import VCalendar from './v-calendar.vue'
+import CalendarPanel from './calendar-panel.vue'
 
 export default {
-  components: { VCalendar },
+  components: { CalendarPanel },
   props: {
     format: {
       type: String,

@@ -13,6 +13,7 @@
 
 <script>
 export default {
+  name: 'VTagInput',
   props: {
     value: Array,
   },
