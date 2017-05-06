@@ -21,21 +21,6 @@
 <script>
 import { mapActions } from 'vuex'
 
-const setComputed = function (keys) {
-  const res = {}
-  keys.forEach((key) => {
-    res[key] = {
-      get() {
-        return this.$store.state.article.params[key]
-      },
-      set(val) {
-        this.selectParam({ [key]: val })
-      },
-    }
-  })
-  return res
-}
-
 export default {
   props: {
     tagOptions: Array,
@@ -58,7 +43,20 @@ export default {
       ],
     }
   },
-  computed: setComputed(['order', 'sort', 'tag', 'status']),
+  computed: ((keys) => {
+    const res = {}
+    keys.forEach((key) => {
+      res[key] = {
+        get() {
+          return this.$store.state.article.params[key]
+        },
+        set(val) {
+          this.selectParam({ [key]: val })
+        },
+      }
+    })
+    return res
+  })(['order', 'sort', 'tag', 'status']),
   methods: mapActions(['selectParam']),
 }
 </script>

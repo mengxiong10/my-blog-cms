@@ -27,7 +27,6 @@ export default {
       this.$modal.confirm('确认删除这篇文章吗?').then(this.delCurrentArticle, () => {})
     },
     ...mapActions(['delCurrentArticle', 'updateArticleStatus']),
-    
   },
 }
 </script>

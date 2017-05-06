@@ -23,11 +23,11 @@ export default {
   }),
   methods: {
     showDialog() {
-      this.$modal.prompt({title:'添加标签'}).then((data) => {
+      this.$modal.prompt({ title: '添加标签' }).then((data) => {
         this.addTag(data)
-      },() => {})
+      }, () => { })
     },
-    ...mapActions(['getTagList','addTag']),
+    ...mapActions(['getTagList', 'addTag']),
   },
   created() {
     this.getTagList()
