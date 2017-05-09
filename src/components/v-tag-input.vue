@@ -15,27 +15,27 @@
 export default {
   name: 'VTagInput',
   props: {
-    value: Array,
+    value: Array
   },
-  data() {
+  data () {
     return {
-      text: '',
+      text: ''
     }
   },
   methods: {
-    del(index) {
+    del (index) {
       if (index === -1 && this.text !== '') {
         return
       }
       this.value.splice(index, 1)
     },
-    add(text) {
+    add (text) {
       if (text !== '') {
         this.value.push(text)
         this.text = ''
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

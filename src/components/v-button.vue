@@ -11,18 +11,18 @@ export default {
   name: 'VButton',
   props: {
     nativeType: {
-      default: 'button',
+      default: 'button'
     },
     type: {
       // primary,success,text
-      default: 'default',
-    },
+      default: 'default'
+    }
   },
   computed: {
-    btnType() {
+    btnType () {
       return 'btn--' + this.type
-    },
-  },
+    }
+  }
 }
 </script>
 

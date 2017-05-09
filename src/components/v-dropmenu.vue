@@ -16,18 +16,18 @@ export default {
   props: {
     value: null,
     options: Array,
-    optionKey: String,
+    optionKey: String
   },
-  data() {
+  data () {
     return {
-      key: this.optionKey || 'value',
+      key: this.optionKey || 'value'
     }
   },
   computed: {
-    multiple() {
+    multiple () {
       return Array.isArray(this.value)
     },
-    opts() {
+    opts () {
       return this.options.map(v => {
         if (typeof v !== 'object' || v === null) {
           return { name: v, value: v }
@@ -35,17 +35,17 @@ export default {
           return v
         }
       })
-    },
+    }
   },
   methods: {
-    isSelected(option) {
+    isSelected (option) {
       if (this.multiple) {
         return this.value.indexOf(option[this.key]) > -1
       } else {
         return this.value === option[this.key]
       }
     },
-    selectValue(option) {
+    selectValue (option) {
       let index
       if (this.multiple) {
         index = this.value.indexOf(option[this.key])
@@ -57,8 +57,8 @@ export default {
       } else {
         this.$emit('input', option[this.key])
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

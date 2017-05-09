@@ -13,21 +13,21 @@
 import api from 'src/api'
 
 export default {
-  data() {
+  data () {
     return {
       user: {
         username: 'admin',
-        password: 'admin',
-      },
+        password: 'admin'
+      }
     }
   },
   methods: {
-    login() {
+    login () {
       api.login(this.user).then(() => {
         this.$router.push({ name: 'articleList' })
       })
-    },
-  },
+    }
+  }
 }
 </script>
 

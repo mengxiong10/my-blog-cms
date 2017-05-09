@@ -14,47 +14,46 @@ axios.defaults.baseURL = 'http://localhost:9000'
 axios.defaults.withCredentials = true // cors cookie
 
 export default {
-  login(user) {
+  login (user) {
     return axios.post('/admin/login', user)
   },
-  logout() {
+  logout () {
     return axios.post('/admin/logout')
   },
-  upload(fd) {
+  upload (fd) {
     return axios.post('/upload', fd).then((res) => {
       res.data.data = axios.defaults.baseURL + '/' + res.data.data
       return res
     })
   },
-  getArticleList(params) {
+  getArticleList (params) {
     return axios.get('/article/list', { params })
   },
-  getArticleDetail(id) {
+  getArticleDetail (id) {
     return axios.get(`/article/${id}`)
   },
-  addArticle(article) {
+  addArticle (article) {
     return axios.post('/article', article)
   },
-  updateArticle(id, article) {
+  updateArticle (id, article) {
     return axios.put(`/article/${id}`, article)
   },
-  delArticle(id) {
+  delArticle (id) {
     return axios.delete(`/article/${id}`)
   },
-  updateArticleStatus(id, status) {
+  updateArticleStatus (id, status) {
     return axios.put(`/article/${id}/status/${status}`)
   },
-  getTagList() {
+  getTagList () {
     return axios.get('/tag/list')
   },
-  addTag(tag) {
+  addTag (tag) {
     return axios.post('/tag', tag)
   },
-  updateTag(id, tag) {
+  updateTag (id, tag) {
     return axios.put(`/tag/${id}`, tag)
   },
-  delTag(id) {
+  delTag (id) {
     return axios.delete(`/tag/${id}`)
-  },
+  }
 }
-

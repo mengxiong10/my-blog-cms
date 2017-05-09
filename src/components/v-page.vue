@@ -22,23 +22,23 @@ export default {
   props: {
     total: {
       type: Number,
-      default: 1,
+      default: 1
     },
     value: {
       type: Number,
-      default: 1,
-    },
+      default: 1
+    }
   },
   computed: {
     currentPage: {
-      get() {
+      get () {
         return this.value
       },
-      set(newVal) {
+      set (newVal) {
         this.$emit('input', newVal)
       }
     },
-    pages() {
+    pages () {
       const current = this.currentPage
       const last = this.total
       if (last <= 7) {
@@ -50,15 +50,15 @@ export default {
       } else {
         return [1, '...', current - 2, current - 1, current, current + 1, current + 2, '...', last]
       }
-    },
+    }
   },
   watch: {
-    total(val) {
+    total (val) {
       if (this.currentPage > val) {
         this.currentPage = val
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

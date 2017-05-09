@@ -27,7 +27,7 @@ import api from 'src/api'
 import SimpleMde from './simple-mde.vue'
 import TagSection from './tag-section.vue'
 
-function Article() {
+function Article () {
   this.title = ''
   this.content = ''
   this.tags = []
@@ -37,21 +37,21 @@ function Article() {
 export default {
   name: 'articleAdd',
   components: { SimpleMde, TagSection },
-  data() {
+  data () {
     return {
-      article: {},
+      article: {}
     }
   },
   computed: {
-    isArticleAdd() {
+    isArticleAdd () {
       return this.$route.name === 'articleAdd'
-    },
+    }
   },
   watch: {
-    '$route': 'getArticle',
+    '$route': 'getArticle'
   },
   methods: {
-    getArticle() {
+    getArticle () {
       if (this.isArticleAdd) {
         this.article = new Article()
       } else {
@@ -60,10 +60,10 @@ export default {
         })
       }
     },
-    changeStatus(status) {
+    changeStatus (status) {
       this.article.status = status
     },
-    saveArticle() {
+    saveArticle () {
       const p = this.isArticleAdd
         ? api.addArticle(this.article)
         : api.updateArticle(this.article._id, this.article)
@@ -71,11 +71,11 @@ export default {
         this.$modal.alert('保存成功')
         this.$router.push({ name: 'articleList' })
       })
-    },
+    }
   },
-  created() {
+  created () {
     this.getArticle()
-  },
+  }
 }
 </script>
 

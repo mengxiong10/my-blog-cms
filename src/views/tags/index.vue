@@ -21,24 +21,24 @@ export default {
   name: 'tagList',
   computed: mapState({ tagList: ({ tag }) => tag.tagList }),
   methods: {
-    edit(tag, index) {
-      this.$modal.prompt({title:'修改标签',text:tag.name}).then((data) => {
+    edit (tag, index) {
+      this.$modal.prompt({title: '修改标签', text: tag.name}).then((data) => {
         return this.updateTag({ id: tag._id, tag: data, index })
-      },() => {})
+      }, () => {})
     },
-    add() {
-      this.$modal.prompt({title:'添加标签'}).then((data) => {
+    add () {
+      this.$modal.prompt({title: '添加标签'}).then((data) => {
         return this.addTag(data)
-      },() => {})
+      }, () => {})
     },
-    del(index) {
+    del (index) {
       this.delTag(index)
     },
-    ...mapActions(['getTagList', 'delTag', 'addTag', 'updateTag']),
+    ...mapActions(['getTagList', 'delTag', 'addTag', 'updateTag'])
   },
-  created() {
+  created () {
     this.getTagList()
-  },
+  }
 }
 </script>
 

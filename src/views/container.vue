@@ -22,7 +22,7 @@ import VModal from '../components/v-modal.vue'
 
 export default {
   name: 'container',
-  components: { SidebarHeader, SidebarNav, HeaderView, VModal },
+  components: { SidebarHeader, SidebarNav, HeaderView, VModal }
 }
 </script>
 

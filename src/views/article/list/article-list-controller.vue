@@ -23,41 +23,41 @@ import { mapActions } from 'vuex'
 
 export default {
   props: {
-    tagOptions: Array,
+    tagOptions: Array
   },
-  data() {
+  data () {
     return {
       orderOptions: [
         { name: '升序', value: 'asc' },
-        { name: '降序', value: 'desc' },
+        { name: '降序', value: 'desc' }
       ],
       sortOptions: [
         { name: '创建时间', value: 'created_at' },
         { name: '更新时间', value: 'updated_at' },
-        { name: '标题', value: 'title' },
+        { name: '标题', value: 'title' }
       ],
       statusOptions: [
         { name: '全部', value: '' },
         { name: '草稿', value: 0 },
-        { name: '已发布', value: 1 },
-      ],
+        { name: '已发布', value: 1 }
+      ]
     }
   },
   computed: ((keys) => {
     const res = {}
     keys.forEach((key) => {
       res[key] = {
-        get() {
+        get () {
           return this.$store.state.article.params[key]
         },
-        set(val) {
+        set (val) {
           this.selectParam({ [key]: val })
-        },
+        }
       }
     })
     return res
   })(['order', 'sort', 'tag', 'status']),
-  methods: mapActions(['selectParam']),
+  methods: mapActions(['selectParam'])
 }
 </script>
 

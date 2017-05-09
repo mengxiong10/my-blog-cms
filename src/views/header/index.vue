@@ -9,27 +9,27 @@
 import api from 'src/api'
 
 export default {
-  name:'header',
-  data() {
+  name: 'header',
+  data () {
     return {
-      img:'',
+      img: ''
     }
   },
-  methods:{
-    logout() {
+  methods: {
+    logout () {
       api.logout().then(() => {
-        this.$router.push({name:'login'})
+        this.$router.push({name: 'login'})
       })
     },
-    upload(e) {
+    upload (e) {
       const file = e.target.files[0]
       const fd = new FormData()
-      fd.append('file',file)
+      fd.append('file', file)
       api.upload(fd).then(res => {
-        this.img = res.data.data 
+        this.img = res.data.data
       })
     }
-  },
+  }
 }
 </script>
 

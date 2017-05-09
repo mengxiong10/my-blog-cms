@@ -15,23 +15,23 @@ export default {
   name: 'tagSection',
   props: {
     // 已选中的标签
-    tags: Array,
+    tags: Array
   },
   computed: mapState({
     // 所有标签
-    tagOptions: ({ tag }) => tag.tagList,
+    tagOptions: ({ tag }) => tag.tagList
   }),
   methods: {
-    showDialog() {
+    showDialog () {
       this.$modal.prompt({ title: '添加标签' }).then((data) => {
         this.addTag(data)
       }, () => { })
     },
-    ...mapActions(['getTagList', 'addTag']),
+    ...mapActions(['getTagList', 'addTag'])
   },
-  created() {
+  created () {
     this.getTagList()
-  },
+  }
 }
 </script>
 

@@ -26,25 +26,25 @@ export default {
   components: { ArticleList, ArticleDetail, ArticleListController, ArticleDetailController },
   computed: {
     currentPage: {
-      get() {
+      get () {
         return this.$store.state.article.params.page
       },
-      set(page) {
+      set (page) {
         this.selectParam({ page })
-      },
+      }
     },
     ...mapState({
       totalPage: ({ article }) => article.totalPage,
       articles: ({ article }) => article.articleList,
       currentArticle: ({ article }) => article.currentArticle,
-      tagList: ({ tag }) => tag.tagList,
-    }),
+      tagList: ({ tag }) => tag.tagList
+    })
   },
   methods: mapActions(['getArticleList', 'selectParam', 'getTagList']),
-  created() {
+  created () {
     this.getArticleList()
     this.getTagList()
-  },
+  }
 }
 </script>
 

@@ -9,12 +9,12 @@
 
 <script>
 export default {
-  name:'sidebarHeader',
-  data() {
+  name: 'sidebarHeader',
+  data () {
     return {
 
     }
-  },
+  }
 }
 </script>
 

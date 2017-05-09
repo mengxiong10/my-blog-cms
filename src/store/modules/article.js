@@ -1,4 +1,4 @@
-/* article*/
+/* article */
 import api from 'src/api'
 import { merge } from 'src/server/utils'
 
@@ -7,28 +7,28 @@ export default {
     articleList: [],
     currentArticle: {},
     totalPage: 0,
-    params: { page: 1, perPage: 10, sort: 'created_at', order: 'desc', tag: '', status: '' },
+    params: { page: 1, perPage: 10, sort: 'created_at', order: 'desc', tag: '', status: '' }
   },
   mutations: {
-    SET_ARTICLE_LIST(state, article) {
+    SET_ARTICLE_LIST (state, article) {
       state.articleList = article.list
       state.totalPage = article.total
     },
-    SET_CURRENT_ARTICLE(state, article) {
+    SET_CURRENT_ARTICLE (state, article) {
       state.currentArticle = article
     },
-    SET_PARAMS(state, param) {
+    SET_PARAMS (state, param) {
       merge(state.params, param)
     },
-    UPDATE_ARTICLE_STATUS(state, status) {
+    UPDATE_ARTICLE_STATUS (state, status) {
       state.currentArticle.status = status
     },
-    DELETE_ARTICLE(state) {
+    DELETE_ARTICLE (state) {
       state.currentArticle = {}
-    },
+    }
   },
   actions: {
-    getArticleList({ state, commit, dispatch }) {
+    getArticleList ({ state, commit, dispatch }) {
       return api.getArticleList(state.params).then((res) => {
         const list = res.data.data || []
         const total = Math.ceil(res.data.total / state.params.perPage)
@@ -39,7 +39,7 @@ export default {
         }
       })
     },
-    delCurrentArticle({ state, commit, dispatch }) {
+    delCurrentArticle ({ state, commit, dispatch }) {
       const id = state.currentArticle._id
       return api.delArticle(id).then(() => {
         commit('DELETE_ARTICLE')
@@ -47,19 +47,19 @@ export default {
       })
     },
     // 选中当前文章
-    selectArticle({ state, commit }, article) {
+    selectArticle ({ state, commit }, article) {
       commit('SET_CURRENT_ARTICLE', article)
     },
-    selectParam({ commit, dispatch }, param) {
+    selectParam ({ commit, dispatch }, param) {
       commit('SET_PARAMS', param)
       dispatch('getArticleList')
     },
-    updateArticleStatus({ state, commit }) {
+    updateArticleStatus ({ state, commit }) {
       const id = state.currentArticle._id
       const status = state.currentArticle.status ^ 1
       return api.updateArticleStatus(id, status).then((res) => {
         commit('UPDATE_ARTICLE_STATUS', res.data.status)
       })
-    },
-  },
+    }
+  }
 }

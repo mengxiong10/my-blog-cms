@@ -20,9 +20,9 @@ export default {
   name: 'articleList',
   props: {
     articles: Array,
-    currentArticle: Object,
+    currentArticle: Object
   },
-  methods: mapActions(['selectArticle']),
+  methods: mapActions(['selectArticle'])
 }
 </script>
 

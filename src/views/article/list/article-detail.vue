@@ -9,8 +9,8 @@
 export default {
   name: 'articleDetail',
   props: {
-    article: Object,
-  },
+    article: Object
+  }
 }
 </script>
 
@@ -25,4 +25,3 @@ h4{
   padding:20px;
 }
 </style>
-

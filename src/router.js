@@ -14,29 +14,29 @@ export default new Router({
   routes: [{
     name: 'login',
     path: '/login',
-    component: Login,
+    component: Login
   }, {
     path: '/cms',
     component: Container,
     children: [{
       name: 'articleList',
       path: 'article/list',
-      component: articleList,
+      component: articleList
     }, {
       name: 'articleAdd',
       path: 'article/add',
-      component: articleAdd,
+      component: articleAdd
     }, {
       name: 'articleEdit',
       path: 'article/:id/update',
-      component: articleAdd,
+      component: articleAdd
     }, {
       name: 'tagList',
       path: 'tag/list',
-      component: tagList,
-    }],
+      component: tagList
+    }]
   }, {
     path: '*',
-    redirect: '/login',
-  }],
+    redirect: '/login'
+  }]
 })

@@ -18,7 +18,7 @@ const defaultOptions = {
   show: false,
   title: '提示',
   content: '',
-  type: 'alert',
+  type: 'alert'
 }
 const createdModal = function (options) {
   return new Promise((resolve, reject) => {
@@ -26,33 +26,32 @@ const createdModal = function (options) {
   })
 }
 
-
 export default {
   name: 'VModal',
   components: { VDialog },
-  data() {
+  data () {
     return {
       modal: JSON.parse(JSON.stringify(defaultOptions)),
       errorMsg: '内容不能为空',
-      dirty: false,// 开始检测是否为空
-      text: '',
+      dirty: false, // 开始检测是否为空
+      text: ''
     }
   },
   computed: {
-    invalid() {
+    invalid () {
       return this.text === '' && this.dirty
-    },
+    }
   },
   watch: {
-    'modal.show'(val) {
+    'modal.show' (val) {
       if (!val) {
         this.dirty = false
         this.text = ''
       }
-    },
+    }
   },
   methods: {
-    confirm() {
+    confirm () {
       this.dirty = true
       if (this.modal.type === 'prompt' && this.invalid) {
         return
@@ -60,14 +59,14 @@ export default {
       $root.modal.resolve(this.text)
       $root.modal.show = false
     },
-    cancel() {
+    cancel () {
       $root.modal.reject()
       $root.modal.show = false
     },
-    setRoot(vm) {
+    setRoot (vm) {
       $root = vm
       Vue.prototype.$modal = {
-        confirm(content, title) {
+        confirm (content, title) {
           let options = { content, title }
           if (typeof content === 'object') {
             options = content
@@ -75,7 +74,7 @@ export default {
           merge(options, { type: 'confirm' })
           return createdModal(options)
         },
-        alert(content, title) {
+        alert (content, title) {
           let options = { content, title }
           if (typeof content === 'object') {
             options = content
@@ -83,7 +82,7 @@ export default {
           merge(options, { type: 'alert' })
           return createdModal(options).catch(() => { })
         },
-        prompt(content, title, text) {
+        prompt (content, title, text) {
           let options = { content, title }
           if (typeof content === 'object') {
             options = content
@@ -91,13 +90,13 @@ export default {
           $root.text = options.text || text || '' // 默认值
           merge(options, { type: 'prompt' })
           return createdModal(options)
-        },
+        }
       }
-    },
+    }
   },
-  created() {
+  created () {
     this.setRoot(this)
-  },
+  }
 }
 </script>
 

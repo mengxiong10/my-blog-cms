@@ -3,12 +3,12 @@ import Vue from 'vue'
 const Loading = Vue.extend(require('./loading.vue'))
 
 export default {
-  bind(el, binding) {
+  bind (el, binding) {
     el.instance = new Loading({
       el: document.createElement('div'),
       data: {
-        visible: !!binding.value,
-      },
+        visible: !!binding.value
+      }
     })
     Vue.nextTick(() => {
       const position = window.getComputedStyle(el, null).getPropertyValue('position')
@@ -18,12 +18,12 @@ export default {
       el.appendChild(el.instance.$el)
     })
   },
-  update(el, binding) {
+  update (el, binding) {
     if (binding.oldValue !== binding.value) {
       el.instance.visible = !!binding.value
     }
   },
-  unbind(el) {
+  unbind (el) {
     el.removeChild(el.instance.$el)
-  },
+  }
 }

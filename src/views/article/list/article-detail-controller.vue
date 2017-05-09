@@ -12,22 +12,22 @@ import { mapActions } from 'vuex'
 export default {
   name: 'articleDetailController',
   props: {
-    article: Object,
+    article: Object
   },
   computed: {
-    statusText() {
+    statusText () {
       return this.article.status ? '撤回' : '发布'
-    },
+    }
   },
   methods: {
-    edit() {
+    edit () {
       this.$router.push({ name: 'articleEdit', params: { id: this.article._id } })
     },
-    del() {
+    del () {
       this.$modal.confirm('确认删除这篇文章吗?').then(this.delCurrentArticle, () => {})
     },
-    ...mapActions(['delCurrentArticle', 'updateArticleStatus']),
-  },
+    ...mapActions(['delCurrentArticle', 'updateArticleStatus'])
+  }
 }
 </script>
 
@@ -37,4 +37,3 @@ export default {
   margin-top:-1px;
 }
 </style>
-

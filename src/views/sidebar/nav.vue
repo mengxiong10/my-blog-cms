@@ -37,31 +37,31 @@ import links from './nav.js'
 
 export default {
   name: 'sidebarNav',
-  data() {
+  data () {
     return {
       openLinkIndex: -1,
-      links,
+      links
     }
   },
   methods: {
     actived (i) {
-      return this.openLinkIndex === i 
+      return this.openLinkIndex === i
     },
-    extend(index) {
+    extend (index) {
       this.openLinkIndex = index === this.openLinkIndex ? -1 : index
     },
-    close(el) {
+    close (el) {
       el.style.height = '0'
-      el.style.overflow = 'hidden'  
-    },
-    open(el) {
-      el.style.height = el.scrollHeight + 'px'
       el.style.overflow = 'hidden'
     },
+    open (el) {
+      el.style.height = el.scrollHeight + 'px'
+      el.style.overflow = 'hidden'
+    }
   },
-  mounted() {
+  mounted () {
     this.extend(0)
-  },
+  }
 }
 </script>
 

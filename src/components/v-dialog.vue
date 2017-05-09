@@ -31,26 +31,26 @@
       // 显示dialog
       value: {
         type: Boolean,
-        default: false,
+        default: false
       },
       showConfirmButton: {
         type: Boolean,
-        default: true,
+        default: true
       },
       showCancelButton: {
         type: Boolean,
-        default: true,
-      },
+        default: true
+      }
     },
     methods: {
-      cancel() {
+      cancel () {
         this.$emit('input', false)
         this.$emit('cancel')
       },
-      confirm() {
+      confirm () {
         this.$emit('confirm')
-      },
-    },
+      }
+    }
   }
 </script>
 
