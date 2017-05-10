@@ -3,7 +3,7 @@
 > cms 
 
 ## Demo
-<https://mengxiong10.github.io/vue2-datepicker/dist/>
+<https://mengxiong10.github.io/my-blog-cms/dist/>
 
 ![image](https://github.com/mengxiong10/my-blog-cms/raw/master/screenshot.PNG)
 
