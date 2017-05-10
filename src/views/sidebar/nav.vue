@@ -11,7 +11,7 @@
           <i class="fa fa-angle-down fa-lg" :class="{'fa-rotate-180':actived(index)}"></i>
         </span>
         <router-link class="first-nav"
-                     v-else 
+                     v-else
                      :to="link.path">
           {{link.name}}
         </router-link>
