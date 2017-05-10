@@ -2,6 +2,12 @@
 
 > cms 
 
+## Demo
+<https://mengxiong10.github.io/vue2-datepicker/dist/>
+
+![image](https://github.com/mengxiong10/my-blog-cms/raw/master/screenshot.PNG)
+
+
 ## 开发
 
 ```bash
