@@ -1,6 +1,6 @@
 # my-blog 后台管理(Vue2)
 
-> cms 
+> 一个基于Vue 的后台博客管理实现, mockjs 模拟数据
 
 ## Demo
 <https://mengxiong10.github.io/my-blog-cms/dist/>
